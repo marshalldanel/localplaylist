@@ -1,11 +1,15 @@
 const path = require('path');
 
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+
 module.exports = {
-  entry: './src/index.jsx',
+  entry: {
+    app: path.resolve(__dirname, 'app/src/index.jsx')
+  },
   // https://webpack.js.org/configuration/output/
   output: {
-    path: path.resolve(__dirname, 'public'),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, 'build'),
+    filename: 'js/[name]-bundle-generated.js'
   },
   // https://webpack.js.org/configuration/devtool/#devtool
   devtool: 'source-map',
@@ -20,7 +24,10 @@ module.exports = {
       {
         test: /\.jsx?$/,
         use: {
-          loader: 'babel-loader'
+          loader: 'babel-loader',
+          options: {
+            presets: ["es2015", "stage-0", "react"]
+          }
         }
       },
       // https://webpack.js.org/loaders/sass-loader/
@@ -35,5 +42,12 @@ module.exports = {
         }]
       }
     ]
-  }
+  },
+  plugins: [
+    new HTMLWebpackPlugin({
+      filename: 'index.html',
+      template: path.resolve(__dirname, 'app/index.html'),
+      inject: true
+    })
+  ]
 };

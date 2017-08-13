@@ -2,6 +2,9 @@
 .sass-cache/
 *.css.map
 
+# generated
+build/
+
 # Logs
 logs
 *.log
