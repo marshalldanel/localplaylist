@@ -27,5 +27,5 @@ if(ENV === 'production') {
   app.use(hotmodule(compiler));
 }
   
-app.listen(PORT, '0.0.0.0', 'localhost', () => console.log(`Listening on ${ PORT } in ${ ENV } mode.`));
+app.listen(PORT, '0.0.0.0', 'localhost', () => console.log(`Listening on ${ PORT } in ${ ENV } mode. Wait for compile...`));
   
