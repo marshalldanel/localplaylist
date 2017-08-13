@@ -4,7 +4,7 @@ module.exports = {
   entry: './src/index.jsx',
   // https://webpack.js.org/configuration/output/
   output: {
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, 'public'),
     filename: 'bundle.js'
   },
   // https://webpack.js.org/configuration/devtool/#devtool
