@@ -21,7 +21,7 @@ class App extends Component {
       <div className="MainContainer"> 
         <NavBar/> 
         <pre>{JSON.stringify(this.props)}</pre> 
-        <div>{currentView}</div>
+        {currentView}
       </div>
     );
     
