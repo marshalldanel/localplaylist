@@ -60,3 +60,5 @@ if(ENV === 'development') {
 }
 
 module.exports = config;
+
+//copy webpack plugin
