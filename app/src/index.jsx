@@ -6,7 +6,7 @@ if(module.hot) {
 }
 
 setState({
-  page: 'HOME',
+  view: '',
   user: null,
   locations: [],
   genres: [],
