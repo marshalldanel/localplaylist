@@ -8,6 +8,13 @@ To initialize this repo:
 - visit localhost:3000 in browser
 - The sever will refresh whenever changes are made to any app files
 
+## Initialize DB
+
+- `psql -d template1` - You may need to use the superuser login eg. `-U vagrant`
+- `CREATE ROLE <username> WITH LOGIN password '<password>';` Set your username and password
+- `CREATE DATABASE <dbname> OWNER <role_username>;` Create a database name, and set owner to the role username you just created.
+
+
 ### If you are doing server side development, nodemon is installed to make it a bit easier:
 
 - `npm run dev:nodemon`
