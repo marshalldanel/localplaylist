@@ -12,7 +12,7 @@ class App extends Component {
       <div className="MainContainer"> 
         <NavBar/> 
         <pre>{JSON.stringify(this.props)}</pre> 
-        {currentView}
+        {/* {currentView} */}
         <pre>{JSON.stringify(this.props,null,2)}</pre> 
         <QuestionsContainer view={this.props.view} locations={this.props.locations}/>
         <ConcertMarquee/>
