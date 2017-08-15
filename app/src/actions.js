@@ -14,6 +14,20 @@ export function addLocationField() {
   setState({locations: newLocations});
 }
 
-export function storeLocations(locations) { 
-  
+export function updateLocationField(index, city, date) {
+  const currentLocations = getState().locations;
+
+  setState({
+    locations: [
+      ...currentLocations.slice(0, index),
+      { city, date },
+      ...currentLocations.slice(index + 1)
+    ]
+  });
 }
+
+// export function storeLocationsAsync() {
+//   Api.post('/locations', { locations: getState().locations }).then(() => {
+//     setView('genres');
+//   });
+// }

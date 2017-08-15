@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import LocationsList from './LocationsList.jsx';
-import {setView} from './actions.js';
+import {setView, storeLocations} from './actions.js';
 
 class QuestionsContainer extends Component { 
   render() { 
@@ -19,7 +19,8 @@ class QuestionsContainer extends Component {
         {console.log("this is working")}
         {currentView}
       <button onClick={() => {
-        setView('genres')
+
+        setView('genres');
         }}>Now Select Genres</button>
       </div> 
     );
