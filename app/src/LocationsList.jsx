@@ -5,10 +5,11 @@ import LocationField from './LocationField.jsx'
 
 class LocationsList extends Component { 
   render(){ 
-    const locations = this.props.locations.map((index,location) => {
+    const locations = this.props.locations.map((location, index) => {
       return( 
         <LocationField 
-          i={location.id}
+          key={location.id}
+          index={index}
           city={location.city}
           date={location.date}
         />);
