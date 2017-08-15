@@ -1,11 +1,16 @@
 import React, {Component} from 'react';
+import ConcertMarquee from './ConcertMarquee.jsx';
+
 
 
 class App extends Component {
   
   render() {
     return (
-      <h1>Hello React</h1>
+      <div>
+      <h1>Hello react!</h1>
+      <ConcertMarquee/>
+      </div>
     );
   }
 }
