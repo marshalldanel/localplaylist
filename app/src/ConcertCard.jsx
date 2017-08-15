@@ -32,10 +32,6 @@ class ConcertCard extends Component {
 
                   </div>
                 </div>
-
-                {/* <div className="content">
-                  {concert.description}
-                </div> */}
               </div>
               <footer className="card-footer">
                 <a className="card-footer-item">Venue Info</a>
