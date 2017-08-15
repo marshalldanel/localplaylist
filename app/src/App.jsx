@@ -23,7 +23,6 @@ class App extends Component {
         <NavBar/> 
         <pre>{JSON.stringify(this.props)}</pre> 
         {currentView}
-        <h1>Hello react!</h1>
         <ConcertMarquee/>
       </div>
     );
