@@ -8,6 +8,12 @@ export function setView(view) {
   setState({view});
 }
 
-// export function addLocation(location) { 
-//   setState({location})
-// }
+export function addLocationField() { 
+  const currentLocations = getState().locations;
+  const newLocations = currentLocations.concat([{city:"",date:""}]);
+  setState({locations: newLocations});
+}
+
+export function storeLocations(locations) { 
+  
+}

@@ -9,9 +9,9 @@ if(module.hot) {
 }
 
 setState({
-  view: '',
+  view: 'locations',
   user: null,
-  locations: [],
+  locations: [{city:"Toronto",date:"12/12/12"},{city:"Toronto",date:"12/12/12"}],
   genres: [],
   concerts: [],
   songs: [],
