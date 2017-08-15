@@ -19,11 +19,16 @@ class ConcertMarquee extends Component {
     })
     
     return (
-      <div className="container">
+      <div className="section">
         <div className="columns">
-          
-          {concerts}
-
+          <div className="column is-1"></div>
+          <div className="column is-10">
+            <div className="columns concert-scroller">
+              {concerts}
+            </div>
+          </div>
+          <div className="column is-1">
+          </div>
         </div>
       </div>
     );
@@ -219,64 +224,64 @@ var fakeConcertData = {
             }
           },
           "privacy": "1"
+        },
+        {
+          "-id": "E0-001-100760877-5",
+          "title": "Sylvan Esso",
+          "url": "http://vancouver.eventful.com/events/sylvan-esso-/E0-001-100760877-5?utm_source=apis&utm_medium=apim&utm_campaign=apic",
+          "start_time": "2017-08-15 20:00:00",
+          "olson_path": "America/Vancouver",
+          "venue_id": "V0-001-001057914-6",
+          "venue_url": "http://vancouver.eventful.com/venues/commodore-ballroom-/V0-001-001057914-6?utm_source=apis&utm_medium=apim&utm_campaign=apic",
+          "venue_name": "Commodore Ballroom",
+          "venue_display": "1",
+          "venue_address": "868 Granville Street",
+          "city_name": "Vancouver",
+          "region_name": "British Columbia",
+          "region_abbr": "BC",
+          "postal_code": "V6Z1K3",
+          "country_name": "Canada",
+          "country_abbr2": "CA",
+          "country_abbr": "CAN",
+          "latitude": "49.2806502",
+          "longitude": "-123.1208713",
+          "geocode_type": "EVDB Geocoder",
+          "all_day": "0",
+          "created": "2017-02-28 10:53:46",
+          "owner": "evdb",
+          "modified": "2017-04-27 00:04:30",
+          "performers": {
+            "performer": {
+              "id": "P0-001-014195484-3",
+              "url": "http://concerts.eventful.com/performers/sylvan-esso-/P0-001-014195484-3?utm_source=apis&utm_medium=apim&utm_campaign=apic",
+              "name": "Sylvan Esso",
+              "short_bio": "Musician/Band",
+              "creator": "Anthony",
+              "linker": "evdb"
+            }
+          },
+          "image": {
+            "url": "http://s1.evcdn.com/images/small/I0-001/016/435/308-9.jpeg_/sylvan-esso-08.jpeg",
+            "width": "48",
+            "height": "48",
+            "thumb": {
+              "url": "http://s1.evcdn.com/images/thumb/I0-001/016/435/308-9.jpeg_/sylvan-esso-08.jpeg",
+              "width": "48",
+              "height": "48"
+            },
+            "small": {
+              "url": "http://s1.evcdn.com/images/small/I0-001/016/435/308-9.jpeg_/sylvan-esso-08.jpeg",
+              "width": "48",
+              "height": "48"
+            },
+            "medium": {
+              "url": "http://s1.evcdn.com/images/medium/I0-001/016/435/308-9.jpeg_/sylvan-esso-08.jpeg",
+              "width": "128",
+              "height": "128"
+            }
+          },
+          "privacy": "1"
         }
-        // {
-        //   "-id": "E0-001-100760877-5",
-        //   "title": "Sylvan Esso",
-        //   "url": "http://vancouver.eventful.com/events/sylvan-esso-/E0-001-100760877-5?utm_source=apis&utm_medium=apim&utm_campaign=apic",
-        //   "start_time": "2017-08-15 20:00:00",
-        //   "olson_path": "America/Vancouver",
-        //   "venue_id": "V0-001-001057914-6",
-        //   "venue_url": "http://vancouver.eventful.com/venues/commodore-ballroom-/V0-001-001057914-6?utm_source=apis&utm_medium=apim&utm_campaign=apic",
-        //   "venue_name": "Commodore Ballroom",
-        //   "venue_display": "1",
-        //   "venue_address": "868 Granville Street",
-        //   "city_name": "Vancouver",
-        //   "region_name": "British Columbia",
-        //   "region_abbr": "BC",
-        //   "postal_code": "V6Z1K3",
-        //   "country_name": "Canada",
-        //   "country_abbr2": "CA",
-        //   "country_abbr": "CAN",
-        //   "latitude": "49.2806502",
-        //   "longitude": "-123.1208713",
-        //   "geocode_type": "EVDB Geocoder",
-        //   "all_day": "0",
-        //   "created": "2017-02-28 10:53:46",
-        //   "owner": "evdb",
-        //   "modified": "2017-04-27 00:04:30",
-        //   "performers": {
-        //     "performer": {
-        //       "id": "P0-001-014195484-3",
-        //       "url": "http://concerts.eventful.com/performers/sylvan-esso-/P0-001-014195484-3?utm_source=apis&utm_medium=apim&utm_campaign=apic",
-        //       "name": "Sylvan Esso",
-        //       "short_bio": "Musician/Band",
-        //       "creator": "Anthony",
-        //       "linker": "evdb"
-        //     }
-        //   },
-        //   "image": {
-        //     "url": "http://s1.evcdn.com/images/small/I0-001/016/435/308-9.jpeg_/sylvan-esso-08.jpeg",
-        //     "width": "48",
-        //     "height": "48",
-        //     "thumb": {
-        //       "url": "http://s1.evcdn.com/images/thumb/I0-001/016/435/308-9.jpeg_/sylvan-esso-08.jpeg",
-        //       "width": "48",
-        //       "height": "48"
-        //     },
-        //     "small": {
-        //       "url": "http://s1.evcdn.com/images/small/I0-001/016/435/308-9.jpeg_/sylvan-esso-08.jpeg",
-        //       "width": "48",
-        //       "height": "48"
-        //     },
-        //     "medium": {
-        //       "url": "http://s1.evcdn.com/images/medium/I0-001/016/435/308-9.jpeg_/sylvan-esso-08.jpeg",
-        //       "width": "128",
-        //       "height": "128"
-        //     }
-        //   },
-        //   "privacy": "1"
-        // }
       ]
     }
   }
