@@ -2,14 +2,13 @@ import React, {Component} from 'react';
 import {setView} from './actions.js';
 
 class Locations extends Component { 
-  render() { 
+  render(){ 
     return (
-      <main> 
-        <section className="locationsContainer">Location</section> 
-        <div>#1</div>
-        {console.log("hello")}
-      </main>
+        <section className="locationsContainer">
+          <div>Which cities are you going to?</div>
+          
+        </section> 
     );
-  }
+  };
 }
 export default Locations;
