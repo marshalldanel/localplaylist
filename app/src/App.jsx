@@ -9,13 +9,11 @@ class App extends Component {
   
   render() {
     return (
-      <div className="MainContainer"> 
+      <div className="main-container"> 
         <NavBar/> 
-        <pre>{JSON.stringify(this.props)}</pre> 
-        {/* {currentView} */}
-        <pre>{JSON.stringify(this.props,null,2)}</pre> 
         <QuestionsContainer view={this.props.view} locations={this.props.locations}/>
         <ConcertMarquee/>
+        <footer className="footer"/> 
       </div>
     );
   }
