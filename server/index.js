@@ -10,6 +10,8 @@ const hotmodule = require('webpack-hot-middleware');
 const webpackconfig = require('../webpack.config.js');
 const compiler = webpack(webpackconfig);
 
+const routes = require('./routes/routes');
+
 // Sets port to 3000, and defaults to development mode unless specified in NODE_ENV
 
 const PORT = 3000;
@@ -36,11 +38,13 @@ if(ENV === 'production') {
 // If we want to make modules of the routes, then we will 'require' them, and use express.Router(); in those files
 // eg. https://stackoverflow.com/questions/28305120/differences-between-express-router-and-app-get
 
+// Mount all route files
+app.use(routes());
 // Below is an example API route:
 
 app.get('/api', function (req, res) {
-  res.send('This is how our API will work!')
-})
+  res.send('This is how our API will work!');
+});
 
 // Starts the server
   
