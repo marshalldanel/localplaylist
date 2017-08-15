@@ -3,3 +3,9 @@ $brand-color: tomato;
 h1 {
   color: $brand-color;
 }
+
+.concert-card {
+  height: 150px;
+  overflow: scroll;
+
+}

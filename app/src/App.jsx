@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ConcertMarquee from './ConcertMarquee.jsx';
 import NavBar from './NavBar.jsx';
 import {setView} from './actions.js';
 import QuestionsContainer from './QuestionsContainer.jsx';
@@ -11,6 +12,7 @@ class App extends Component {
       <div className="main-container"> 
         <NavBar/> 
         <QuestionsContainer view={this.props.view} locations={this.props.locations}/>
+        <ConcertMarquee/>
         <footer className="footer"/> 
       </div>
     );
