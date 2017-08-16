@@ -8,8 +8,8 @@ class NavBar extends Component {
         <nav className="navbar"> 
           <h1 className="navbar-brand">Tripify</h1> 
         <div className="navbar-end"> 
-          <button type="button" className="navbar-item">Login</button> 
-          <button type="button" className="navbar-item">New User?</button> 
+          <button type="button" className="button is-primary">Login</button> 
+          <button type="button" className="button is-primary">New User?</button> 
         </div>  
         </nav> 
       </header> 

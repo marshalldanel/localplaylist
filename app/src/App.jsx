@@ -11,14 +11,14 @@ class App extends Component {
   
   render() {
     return (
-      <body className="main-container"> 
+      <div className="main-container"> 
         <NavBar/> 
         <QuestionsContainer view={this.props.view} locations={this.props.locations}/>
         <ConcertMarquee/>
         <CitiesResults/>
         <Playlist/>
         <footer className="footer"/> 
-      </body> 
+      </div> 
     );
   }
 }
