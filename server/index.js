@@ -22,7 +22,28 @@ const knex = require('knex')(knexConfig[ENV]);
 
 // Seperate routes
 
-const routes = require('./routes/routes');
+const userRoutes = require('./routes/user');
+const mainRoute = require('./routes/route');
+
+// const concertRoutes = require('./routes/concert');
+// const tripRoutes = require('./routes/trip');
+// const playlistRoutes = require('./routes/playlist');
+
+// Cookie logic
+const shortid = require('shortid');
+const cookieSession = require('cookie-session');
+app.use(cookieSession({
+  name: 'session',
+  keys: ["hksdn"],
+  maxAge: 24 * 60 * 60 * 1000
+}));
+
+app.use((req, res, next) => {
+  if (!req.session.user_cookie) {
+    req.session.user_cookie = shortid.generate();
+  }
+  next();
+});
 
 // Pulls static files from build folder if in production mode, otherwise will start webpack dev server and hotmodule
 
@@ -47,13 +68,18 @@ if(ENV === 'production') {
 
 // Mount all route files
 
-app.use(routes(knex));
+app.use(mainRoute(knex));
+app.use(userRoutes(knex));
+
+// app.use(tripRoutes(knex));
+// app.use(playlistRoutes(knex));
+// app.use(concertRoutes(knex));
 
 // Below is an example API route:
 
-app.get('/api', function (req, res) {
-  res.send('This is how our API will work!');
-});
+// app.get('/api', function (req, res) {
+//   res.send('This is how our API will work!');
+// });
 
 // Starts the server
   
