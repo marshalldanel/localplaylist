@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import LocationsList from './LocationsList.jsx';
 import {setView, storeLocations} from './actions.js';
+import GenresSelect from './GenreSelect.jsx';
 
 class QuestionsContainer extends Component { 
   render() { 
@@ -10,19 +11,17 @@ class QuestionsContainer extends Component {
         currentView = <LocationsList locations={this.props.locations}/> 
       break;
       case 'genres': 
-        currentView = <Genres genres={this.props.genres}/> 
+        currentView = <GenresSelect/> 
       break;
     }
     
     return(
-      <div className="question-container"> 
-        {console.log("this is working")}
+      <section className="section is-medium"> 
         {currentView}
-      <button onClick={() => {
-
+      <button className="button is-primary"onClick={() => {
         setView('genres');
-        }}>Now Select Genres</button>
-      </div> 
+        }}>Next - Genres</button>
+      </section> 
     );
   };
 }

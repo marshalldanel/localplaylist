@@ -15,11 +15,11 @@ class LocationsList extends Component {
         />);
     });
     return (
-        <section className="locationsContainer">
-          <div>Which cities are you going to?</div>
+        <div className="locationsContainer container is-fluid">
+          <h2 className="subtitle has-text-centered is-size-2">Which cities are you going to?</h2>
           {locations}
-          <button onClick={()=> {addLocationField()}}>Add Another Location </button>
-        </section> 
+          <button className="button is-primary is-outlined" onClick={()=> {addLocationField()}}>Add Another Location </button>
+        </div> 
     );
   };
 }
