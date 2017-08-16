@@ -15,7 +15,7 @@ class App extends Component {
         <QuestionsContainer view={this.props.view} locations={this.props.locations}/>
         <ConcertMarquee/>
         <CitiesResults locations={this.props.locations}/>
-        </Playlist>
+        <Playlist/>>
         <footer className="footer"/> 
       </div> 
     );
