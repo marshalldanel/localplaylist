@@ -11,7 +11,8 @@ class LocationsList extends Component {
           key={location.id}
           index={index}
           city={location.city}
-          date={location.date}
+          start_date={location.start_date}
+          end_date={location.end_date}
         />);
     });
     return (

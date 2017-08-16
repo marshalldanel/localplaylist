@@ -10,17 +10,17 @@ export function setView(view) {
 
 export function addLocationField() { 
   const currentLocations = getState().locations;
-  const newLocations = currentLocations.concat([{city:"",date:""}]);
+  const newLocations = currentLocations.concat([{city:"",start_date:"",end_date:""}]);
   setState({locations: newLocations});
 }
 
-export function updateLocationField(index, city, date) {
+export function updateLocationField(index, city, start_date, end_date) {
   const currentLocations = getState().locations;
 
   setState({
     locations: [
       ...currentLocations.slice(0, index),
-      { city, date },
+      { city, start_date, end_date },
       ...currentLocations.slice(index + 1)
     ]
   });
