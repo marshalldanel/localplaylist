@@ -8,7 +8,7 @@ class LocationsList extends Component {
     const locations = this.props.locations.map((location, index) => {
       return( 
         <LocationField 
-          key={location.id}
+          key={index}
           index={index}
           city={location.city}
           start_date={location.start_date}
@@ -16,8 +16,19 @@ class LocationsList extends Component {
         />);
     });
     return (
-        <div className="locationsContainer container is-fluid">
-          <h2 className="subtitle has-text-centered is-size-2">Which cities are you going to?</h2>
+        <div className="locationsContainer container">
+          <h2 className="subtitle has-text-centered is-size-2">Where are you travelling to?</h2>
+          <div className="columns">
+            <div className="column">
+              City
+            </div>
+            <div className="column">
+              Arrival Date
+            </div>
+            <div className="column">
+              Departure Date
+            </div>
+          </div>
           {locations}
           <button className="button is-primary is-outlined" onClick={()=> {addLocationField()}}>Add Another Location </button>
         </div> 
