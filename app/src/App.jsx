@@ -4,7 +4,7 @@ import NavBar from './NavBar.jsx';
 import {setView} from './actions.js';
 import QuestionsContainer from './QuestionsContainer.jsx';
 import CitiesResults from './CitiesResults.jsx'
-import PlaylistSong from './PlaylistSong.jsx'
+import Playlist from './Playlist.jsx'
 
 // THIS WILL NEVER CONTAIN THIS.STATE ANYWHERE - 
 class App extends Component {
@@ -16,7 +16,7 @@ class App extends Component {
         <QuestionsContainer view={this.props.view} locations={this.props.locations}/>
         <ConcertMarquee/>
         <CitiesResults/>
-        <PlaylistSong/>
+        <Playlist/>
         <footer className="footer"/> 
       </body> 
     );
