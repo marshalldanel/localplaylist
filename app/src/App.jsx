@@ -10,13 +10,13 @@ class App extends Component {
   
   render() {
     return (
-      <div className="main-container"> 
+      <body className="main-container"> 
         <NavBar/> 
         <QuestionsContainer view={this.props.view} locations={this.props.locations}/>
         <ConcertMarquee/>
         <CitiesResults/>
         <footer className="footer"/> 
-      </div>
+      </body> 
     );
   }
 }
