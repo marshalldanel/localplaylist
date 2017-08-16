@@ -15,8 +15,8 @@ class CitiesResults extends Component {
     })
     
     return (
-      <div className="section">
-        <div className="container">
+      <div className="section is-paddingless">
+        <div className="container is-paddingless">
           {trips}
         </div>
       </div>
