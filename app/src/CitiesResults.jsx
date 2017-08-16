@@ -13,9 +13,9 @@ class CitiesResults extends Component {
     // Beware of this if statement! It will only render a card, if trip.city = true
     // This is being used as a filter so that the null location in state isn't created. (There is always a null location...)
 
-    let trips = locations.map((trip) => {
+    let trips = locations.map((trip, index) => {
       if (trip.city) {
-        return <CityCard trip={trip}/>
+        return <CityCard key={index} trip={trip}/>
       }
     })
     
