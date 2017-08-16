@@ -21,12 +21,13 @@ class ConcertMarquee extends Component {
     return (
       <div className="section">
         <div className="columns">
-          <div className="column is-1"></div>
-          <div className="column is-10">
-            <div className="columns concert-scroller">
-              {concerts}
-            </div>
+          <div className="column is-1">
           </div>
+            <div className="column is-10">
+              <div className="columns concert-scroller">
+                {concerts}
+              </div>
+            </div>
           <div className="column is-1">
           </div>
         </div>
