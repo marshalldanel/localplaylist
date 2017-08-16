@@ -10,14 +10,14 @@ import Playlist from './Playlist.jsx';
 class App extends Component {
   render() {
     return (
-      <div className="main-container"> 
-        <NavBar/> 
-        <QuestionsContainer view={this.props.view} locations={this.props.locations}/>
-        <ConcertMarquee/>
-        <CitiesResults locations={this.props.locations}/>
-        <Playlist/>>
-        <footer className="footer"/> 
-      </div> 
+      <div className="main-container">
+        <NavBar />
+        <QuestionsContainer view={this.props.view} locations={this.props.locations} />
+        <ConcertMarquee />
+        <CitiesResults locations={this.props.locations} />
+        <Playlist />
+        <footer className="footer" />
+      </div>
     );
   }
 }
