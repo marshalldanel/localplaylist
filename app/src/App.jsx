@@ -14,7 +14,7 @@ class App extends Component {
         <NavBar/> 
         <QuestionsContainer view={this.props.view} locations={this.props.locations}/>
         <ConcertMarquee/>
-        <CitiesResults/>
+        <CitiesResults locations={this.props.locations}/>
         <footer className="footer"/> 
       </div> 
     );
