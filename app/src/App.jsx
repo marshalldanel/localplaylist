@@ -3,6 +3,7 @@ import ConcertMarquee from './ConcertMarquee.jsx';
 import NavBar from './NavBar.jsx';
 import {setView} from './actions.js';
 import QuestionsContainer from './QuestionsContainer.jsx';
+import CitiesResults from './CitiesResults.jsx'
 
 // THIS WILL NEVER CONTAIN THIS.STATE ANYWHERE - 
 class App extends Component {
@@ -13,6 +14,7 @@ class App extends Component {
         <NavBar/> 
         <QuestionsContainer view={this.props.view} locations={this.props.locations}/>
         <ConcertMarquee/>
+        <CitiesResults/>
         <footer className="footer"/> 
       </body> 
     );
