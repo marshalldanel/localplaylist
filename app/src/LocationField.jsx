@@ -19,30 +19,32 @@ class LocationField extends Component{
   render() { 
     // will need to add input verification
     return(
-      <div className="location-fields ">
-        <div className="column"> 
-          <div className="field">
-            <label className="label">City</label>
-              <div className="control"> 
-                <input className="city input" type="text" placeholder="i.e. Vancouver" name="city"
-                  onChange={(event) => {
-                    this.setState({
-                      city: event.target.value
-                    }, this.updateField);
-                  }}/>
+      <div className="location-fields">
+        <div className="columns">
+          <div className="column"> 
+            <div className="field">
+              <label className="label">City</label>
+                <div className="control"> 
+                  <input className="city input" type="text" placeholder="i.e. Vancouver" name="city"
+                    onChange={(event) => {
+                      this.setState({
+                        city: event.target.value
+                      }, this.updateField);
+                    }}/>
+                </div>
               </div>
-            </div>
-        </div>
-        <div className="column">
-          <div className="field">
-            <label className="label">Date</label> 
-              <div className="control">
-                <input className="date input" type="date" placeholder="dd/mm/yyyy" name="date"
-                  onChange={(event) => {
-                    this.setState({
-                      date: event.target.value
-                    }, this.updateField);
-                  }}/>
+          </div>
+          <div className="column">
+            <div className="field">
+              <label className="label">Date</label> 
+                <div className="control">
+                  <input className="date input" type="date" placeholder="dd/mm/yyyy" name="date"
+                    onChange={(event) => {
+                      this.setState({
+                        date: event.target.value
+                      }, this.updateField);
+                    }}/>
+              </div>
             </div>
           </div>
         </div>
