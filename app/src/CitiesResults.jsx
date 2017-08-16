@@ -8,11 +8,7 @@ class CitiesResults extends Component {
 
   render() {
     
-    // We will change this to render each concert once we are passing props
-
-    // let concerts = this.props.concerts.map((concert) => {
-    //   return <ConcertCard concert={concert}/>
-    // })
+    // We will change this to render each city once we are passing props
 
     let trips = fakeTripData.map((trip) => {
       return <CityCard trip={trip}/>
