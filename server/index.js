@@ -10,12 +10,19 @@ const hotmodule = require('webpack-hot-middleware');
 const webpackconfig = require('../webpack.config.js');
 const compiler = webpack(webpackconfig);
 
-const routes = require('./routes/routes');
-
 // Sets port to 3000, and defaults to development mode unless specified in NODE_ENV
 
 const PORT = 3000;
 const ENV = process.env.NODE_ENV || 'development';
+
+// Setup Knex files and connect to database
+
+const knexConfig = require('../knexfile');
+const knex = require('knex')(knexConfig[ENV]);
+
+// Seperate routes
+
+const routes = require('./routes/routes');
 
 // Pulls static files from build folder if in production mode, otherwise will start webpack dev server and hotmodule
 
@@ -39,7 +46,9 @@ if(ENV === 'production') {
 // eg. https://stackoverflow.com/questions/28305120/differences-between-express-router-and-app-get
 
 // Mount all route files
-app.use(routes());
+
+app.use(routes(knex));
+
 // Below is an example API route:
 
 app.get('/api', function (req, res) {
