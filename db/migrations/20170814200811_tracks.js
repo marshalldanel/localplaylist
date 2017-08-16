@@ -11,11 +11,11 @@ exports.up = function(knex, Promise) {
       table.json('album_images');
       table.integer('track_popularity');
     })
-  ])
+  ]);
 };
 
 exports.down = function(knex, Promise) {
   return Promise.all([
     knex.schema.dropTable('tracks')
-  ])
+  ]);
 };
