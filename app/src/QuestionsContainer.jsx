@@ -15,14 +15,13 @@ class QuestionsContainer extends Component {
     }
     
     return(
-      <div className="question-container"> 
-        {console.log("this is working")}
+      <section className="section is-medium"> 
         {currentView}
       <button onClick={() => {
 
         setView('genres');
-        }}>Now Select Genres</button>
-      </div> 
+        }}>Next - Genres</button>
+      </section> 
     );
   };
 }
