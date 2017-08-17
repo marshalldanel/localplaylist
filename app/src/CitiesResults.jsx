@@ -7,11 +7,16 @@ class CitiesResults extends Component {
   }
 
   render() {
-    
-    // We will change this to render each city once we are passing props
 
-    let trips = fakeTripData.map((trip) => {
-      return <CityCard trip={trip}/>
+    let locations = this.props.locations
+    
+    // Beware of this if statement! It will only render a card, if trip.city = true
+    // This is being used as a filter so that the null location in state isn't created. (There is always a null location...)
+
+    let trips = locations.map((trip, index) => {
+      if (trip.city) {
+        return <CityCard key={index} trip={trip}/>
+      }
     })
     
     return (
@@ -25,21 +30,3 @@ class CitiesResults extends Component {
 }
 
 export default CitiesResults;
-
-const fakeTripData = [
-  { 
-    city: "Vancouver",
-    start_date: "Oct. 16, 1987",
-    end_date: "Oct. 31, 1987"
-  },
-  {
-    city: "Seattle",
-    start_date: "Oct. 31, 1987",
-    end_date: "Nov 7, 1987"
-  },
-  {
-    city: "Portland",
-    start_date: "Nov. 7, 1987",
-    end_date: "Nov 31, 1987"
-  },
-]

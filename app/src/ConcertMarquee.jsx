@@ -14,8 +14,8 @@ class ConcertMarquee extends Component {
     //   return <ConcertCard concert={concert}/>
     // })
 
-    let concerts = fakeConcertData.search.events.event.map((concert) => {
-      return <ConcertCard key={concert.id} concert={concert}/>
+    let concerts = fakeConcertData.search.events.event.map((concert, index) => {
+      return <ConcertCard key={index} concert={concert}/>
     })
     
     return (

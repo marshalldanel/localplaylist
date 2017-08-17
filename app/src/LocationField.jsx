@@ -8,12 +8,13 @@ class LocationField extends Component{
 
     this.state = {
       city: '',
-      date: ''
+      start_date: '',
+      end_date: '',
     }
   }
 
   updateField() {
-    updateLocationField(this.props.index, this.state.city, this.state.date);
+    updateLocationField(this.props.index, this.state.city, this.state.start_date, this.state.end_date);
   }
 
   render() { 
@@ -23,7 +24,6 @@ class LocationField extends Component{
         <div className="columns">
           <div className="column"> 
             <div className="field">
-              <label className="label">City</label>
                 <div className="control"> 
                   <input className="city input" type="text" placeholder="i.e. Vancouver" name="city"
                     onChange={(event) => {
@@ -36,12 +36,23 @@ class LocationField extends Component{
           </div>
           <div className="column">
             <div className="field">
-              <label className="label">Date</label> 
                 <div className="control">
-                  <input className="date input" type="date" placeholder="dd/mm/yyyy" name="date"
+                  <input className="date input" type="date" placeholder="dd/mm/yyyy" name="start_date"
                     onChange={(event) => {
                       this.setState({
-                        date: event.target.value
+                        start_date: event.target.value
+                      }, this.updateField);
+                    }}/>
+              </div>
+            </div>
+          </div>
+          <div className="column">
+            <div className="field">
+                <div className="control">
+                  <input className="date input" type="date" placeholder="dd/mm/yyyy" name="end_date"
+                    onChange={(event) => {
+                      this.setState({
+                        end_date: event.target.value
                       }, this.updateField);
                     }}/>
               </div>
