@@ -1,9 +1,10 @@
 const path = require('path');
-require('dotenv').config();
 const express = require('express');
 
+// Access enviorment variables
+require('dotenv').config();
+
 const app = express();
-const router = express.Router();
 
 // Initializes webpack functions on the server, and compiles.
 
@@ -24,16 +25,13 @@ const ENV = process.env.NODE_ENV || 'development';
 const knexConfig = require('../knexfile');
 const knex = require('knex')(knexConfig[ENV]);
 
-// Seperate routes
+// Seperate route requires
 
 // const userRoutes = require('./routes/user');
-
 const mainRoute = require('./routes/main');
-// const tripRoutes = require('./routes/trip');
-// const playlistRoutes = require('./routes/playlist');
-// const concertRoutes = require('./routes/concert');
 
 // Cookie logic
+
 const shortid = require('shortid');
 const cookieSession = require('cookie-session');
 
@@ -74,10 +72,6 @@ if (ENV === 'production') {
 // Mount all route files
 
 // app.use(userRoutes(knex));
-
-// app.use(tripRoutes(knex));
-// app.use(playlistRoutes(knex));
-// app.use(concertRoutes(knex));
 app.use(mainRoute(knex));
 
 // Below is an example API route:
