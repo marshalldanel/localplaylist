@@ -3,8 +3,8 @@ import ConcertMarquee from './ConcertMarquee.jsx';
 import NavBar from './NavBar.jsx';
 import { setView } from './actions.js';
 import QuestionsContainer from './QuestionsContainer.jsx';
-import CitiesResults from './CitiesResults.jsx';
 import Playlist from './Playlist.jsx';
+import Home from './Home.jsx';
 
 // THIS WILL NEVER CONTAIN THIS.STATE ANYWHERE - 
 class App extends Component {
@@ -12,11 +12,14 @@ class App extends Component {
     return (
       <div className="main-container">
         <NavBar />
-        <QuestionsContainer view={this.props.view} locations={this.props.locations} genres={this.props.genres} />
-        <ConcertMarquee />
-        <CitiesResults locations={this.props.locations} />
-        <Playlist />
-        <footer className="footer" />
+        <Home 
+          view={this.props.view}
+          locations={this.props.locations}
+          genres={this.props.genres}
+        />
+        {/* <ConcertMarquee /> */}
+        {/* <Playlist /> */}
+        <footer className="footer"> FOOTER </footer>
       </div>
     );
   }

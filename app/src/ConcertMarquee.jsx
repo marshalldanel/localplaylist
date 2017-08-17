@@ -1,13 +1,9 @@
 import React, {Component} from 'react';
-import ConcertCard from './ConcertCard.jsx'
+import ConcertCard from './ConcertCard.jsx';
 
 class ConcertMarquee extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    
+
     // We will change this to render each concert once we are passing props
 
     // let concerts = this.props.concerts.map((concert) => {

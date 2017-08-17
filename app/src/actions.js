@@ -16,7 +16,6 @@ export function addLocationField() {
 
 export function updateLocationField(index, city, start_date, end_date) {
   const currentLocations = getState().locations;
-
   setState({
     locations: [
       ...currentLocations.slice(0, index),

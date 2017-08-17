@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import LocationsList from './LocationsList.jsx';
 import { setView } from './actions.js';
 import GenresSelect from './GenreSelect.jsx';
+import Button from './Button.jsx';
 
 class QuestionsContainer extends Component {
   render() {
@@ -21,14 +22,6 @@ class QuestionsContainer extends Component {
     return (
       <section className="section is-medium">
         {currentView}
-        <button
-          className="button is-primary"
-          onClick={() => {
-            setView('genres');
-          }}
-        >
-          Next - Genres
-        </button>
       </section>
     );
   }

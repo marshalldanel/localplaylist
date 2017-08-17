@@ -11,7 +11,7 @@ if(module.hot) {
 setState({
   view: 'locations',
   user: null,
-  locations: [{ city: '', start_date: '', end_date: ''}],
+  locations: [{ city: '', start_date: '', end_date: '' }],
   genres: [],
   concerts: [],
   songs: [],
