@@ -15,7 +15,7 @@ class QuestionsContainer extends Component {
       break;
     }
     
-    return(
+    return (
       <section className="section is-medium"> 
         {currentView}
         <button className="button is-primary" onClick={() => {

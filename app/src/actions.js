@@ -1,28 +1,42 @@
-import {setState, getState} from './appState';
+import {
+  setState,
+  getState,
+} from './appState';
 
 // WHENEVER YOU WANT TO CHANGE THE STATE YOU MUST DEFINE AN ACTION THAT DOES SO
-//KEEP YOUR VIEWS DUMB
-//Actions up, data down
+// KEEP YOUR VIEWS DUMB
+// Actions up, data down
 
-export function setView(view) { 
-  setState({view});
+export function setView(view) {
+  setState({
+    view,
+  });
 }
 
-export function addLocationField() { 
+export function addLocationField() {
   const currentLocations = getState().locations;
-  const newLocations = currentLocations.concat([{city:"",start_date:"",end_date:""}]);
-  setState({locations: newLocations});
+  const newLocations = currentLocations.concat([{
+    city: '',
+    start_date: '',
+    end_date: '',
+  }]);
+  setState({
+    locations: newLocations,
+  });
 }
 
 export function updateLocationField(index, city, start_date, end_date) {
   const currentLocations = getState().locations;
-
   setState({
     locations: [
-      ...currentLocations.slice(0, index),
-      { city, start_date, end_date },
-      ...currentLocations.slice(index + 1)
-    ]
+      ...currentLocations.slice(0, index), // get locations before index
+      {
+        city,
+        start_date,
+        end_date,
+      },
+      ...currentLocations.slice(index + 1), // get locations after index 
+    ],
   });
 }
 
