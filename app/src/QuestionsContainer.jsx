@@ -18,9 +18,11 @@ class QuestionsContainer extends Component {
     return(
       <section className="section is-medium"> 
         {currentView}
-      <button className="button is-primary"onClick={() => {
-        setView('genres');
-        }}>Next - Genres</button>
+        <button className="button is-primary" onClick={() => {
+          setView('genres');
+        }}>
+          Next - Genres
+        </button>
       </section> 
     );
   };

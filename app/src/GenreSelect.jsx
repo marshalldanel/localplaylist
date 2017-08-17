@@ -5,10 +5,10 @@ class GenreSelect extends Component {
 
     const items = ["rock", "pop", "hip-hop","pop","indie","electronic","jazz","classical","country","folk","latin"];
 
-    const checkBoxes = items.map((item) => {
+    const checkBoxes = items.map((item, index) => {
       return (
         <div className="column is-one-quarter">
-          <div className="box">
+          <div className="box" key={index}>
             <input type="checkbox" value={item}/>
             <label>{item}</label> 
           </div> 
