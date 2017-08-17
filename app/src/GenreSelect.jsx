@@ -3,36 +3,114 @@ import { updateGenreField } from './actions.js';
 
 class GenreSelect extends Component {
   render() {
-    const items = ['rock', 'pop', 'hip-hop', 'indie', 'electronic', 'jazz', 'classical', 'country', 'folk', 'latin'];
+    
+    // Props and constants 
+
     const genres = this.props.genres;
 
-    const genreBoxes = items.map((item, index) => {
-      let buttonClass = 'button is-primary is-outlined';
-      if (genres.indexOf(item) > -1) {
-        buttonClass = 'button is-primary';
+    // TODO: Update Icons to be more appropriate...
+
+    const genreObjects = [
+      {
+        genre: 'rock',
+        icon: 'fa fa-hand-rock-o',
+      },
+      {
+        genre: 'pop',
+        icon: 'fa fa-thumbs-o-up',
+      },
+      {
+        genre: 'hip-hop',
+        icon: 'fa fa-music',
+      },
+      {
+        genre: 'indie',
+        icon: 'fa fa-motorcycle',
+      },
+      {
+        genre: 'world',
+        icon: 'fa fa-motorcycle',
+      },
+      {
+        genre: 'eletronic',
+        icon: 'fa fa-star-o',
+      },
+      {
+        genre: 'classical',
+        icon: 'fa fa-ticket',
+      },
+      {
+        genre: 'country',
+        icon: 'fa fa-trash',
+      },
+      {
+        genre: 'folk',
+        icon: 'fa fa-trash',
+      },
+      {
+        genre: 'latin',
+        icon: 'fa fa-trash',
+      },
+      {
+        genre: 'r&b',
+        icon: 'fa fa-trash',
+      },
+      {
+        genre: 'metal',
+        icon: 'fa fa-trash',
+      },
+
+    ];
+
+    // Sorts Genres Alphabetically
+
+    genreObjects.sort((a, b) => {
+      if (a.genre < b.genre) return -1;
+      if (a.genre > b.genre) return 1;
+      return 0;
+    });
+
+    // Maps all Genre objects above.
+    // Once clicked, will toggle state of Genre 
+    // If genre state is set, will render button as 'active'
+
+    const genreSelector = genreObjects.map((item, index) => {
+      let buttonClass = 'button is-primary fixed-width-100';
+      if (genres.indexOf(item.genre) > -1) {
+        buttonClass += ' is-active';
       }
-      return (<div key={index} className="column is-one-quarter">
+      return (<div key={index} className="column is-one-quarter is-capitalized">
         {/* eslint-disable jsx-a11y/interactive-supports-focus */}
         <div
           className={buttonClass}
           role="button"
           onClick={() => {
-            updateGenreField(item);
+            updateGenreField(item.genre);
           }}
         >
           {/* eslint-enable */}
-          {item}
+          <span className="icon is-small">
+            <i className={item.icon} />
+          </span>
+          <span>{item.genre}</span>
         </div>
       </div>
       );
     });
 
+    // Render above buttons
 
     return (
       <div className="container">
         <h2 className="subtitle has-text-centered is-size-2">Select your favourite genres</h2>
-        <div className="columns is-multiline">
-          {genreBoxes}
+        <div className="columns">
+          <div className="column is-2" />
+          <div classNames="column is-8">
+            <div className="columns is-multiline">
+              {genreSelector}
+            </div>
+          </div>
+          <div className="column is-2" />
         </div>
       </div>
     );
