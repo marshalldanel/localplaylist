@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import LocationsList from './LocationsList.jsx';
-import { setView, storeLocations } from './actions.js';
+import { setView } from './actions.js';
 import GenresSelect from './GenreSelect.jsx';
 
 class QuestionsContainer extends Component {
@@ -12,6 +12,9 @@ class QuestionsContainer extends Component {
         break;
       case 'genres':
         currentView = <GenresSelect genres={this.props.genres} />;
+        break;
+      default:
+        currentView = <LocationsList locations={this.props.locations} />;
         break;
     }
 
