@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <div className="main-container">
         <NavBar />
-        <QuestionsContainer view={this.props.view} locations={this.props.locations} />
+        <QuestionsContainer view={this.props.view} locations={this.props.locations} genres={this.props.genres} />
         <ConcertMarquee />
         <CitiesResults locations={this.props.locations} />
         <Playlist />
