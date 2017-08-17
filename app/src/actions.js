@@ -26,8 +26,7 @@ export function updateLocationField(index, city, date) {
   });
 }
 
-// export function storeLocationsAsync() {
-//   Api.post('/locations', { locations: getState().locations }).then(() => {
-//     setView('genres');
-//   });
-// }
+export function storeFormDataAsync() {
+  Api.post('/itinerary', { locations: getState().locations, genres: getState().genres }).then(() => setView('usertrips'));
+}
+
