@@ -1,4 +1,3 @@
-
 exports.up = function(knex, Promise) {
   return Promise.all([
     knex.schema.table('users', function(table){
@@ -12,5 +11,9 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  table.dropColumn('first_name', 'last_name', 'email', 'password_digest', 'user_cookie');
+  return Promise.all([
+    knex.schema.table('users', function(table){
+      table.dropColumn('first_name', 'last_name', 'email', 'password_digest', 'user_cookie');
+      })
+  ]);
 };
