@@ -12,10 +12,14 @@ class App extends Component {
     return (
       <div className="main-container">
         <NavBar />
-        <Home view={this.props.view} locations={this.props.locations} genres={this.props.genres} />
+        <Home 
+          view={this.props.view}
+          locations={this.props.locations}
+          genres={this.props.genres}
+        />
         {/* <ConcertMarquee /> */}
         {/* <Playlist /> */}
-        <footer className="footer" />
+        <footer className="footer"> FOOTER </footer>
       </div>
     );
   }

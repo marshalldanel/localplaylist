@@ -12,16 +12,23 @@ class CitiesResults extends Component {
 
     const trips = locations.map((trip, index) => {
       if (trip.city) {
-        return <CityCard key={index} trip={trip} />
+        return (<CityCard key={index} trip={trip} />);
       }
-    })
-    
+    });
+
     return (
-      <div className="section is-paddingless">
-        <div className="container is-paddingless">
-          {trips}
+      <section className="cities-results">
+        <div className="hero is-small is-primary is-bold">
+          <div className="hero-body">
+            <h2 className="title has-text-centered"> Your Trip </h2>
+          </div>
         </div>
-      </div>
+        <div className="section is-paddingless">
+          <div className="container is-paddingless">
+            {trips}
+          </div>
+        </div>
+      </section> 
     );
   }
 }

@@ -5,7 +5,7 @@ import Button from './Button.jsx';
 import CitiesResults from './CitiesResults.jsx';
 
 class Home extends Component {
-  
+
   render() {
     const view = this.props.view;
 
@@ -20,6 +20,7 @@ class Home extends Component {
           <Button view={this.props.view} />
         </div>
       );
+      
     } else if (view === 'itinerary') {
       return (
         <div>

@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import PlaylistSong from './PlaylistSong.jsx';
 
 class Playlist extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     // We will change this to render each city once we are passing props
