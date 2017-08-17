@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
 
 class CityCard extends Component {
-  constructor(props) {
-    super(props);
-  }
-
+  
   render() {
 
     const trip = this.props.trip;
