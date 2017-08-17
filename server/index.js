@@ -1,6 +1,9 @@
 const path = require('path');
+require('dotenv').config();
 const express = require('express');
+
 const app = express();
+const router = express.Router();
 
 // Initializes webpack functions on the server, and compiles.
 
@@ -8,6 +11,7 @@ const webpack = require('webpack');
 const devserver = require('webpack-dev-middleware');
 const hotmodule = require('webpack-hot-middleware');
 const webpackconfig = require('../webpack.config.js');
+
 const compiler = webpack(webpackconfig);
 
 // Sets port to 3000, and defaults to development mode unless specified in NODE_ENV
@@ -22,20 +26,21 @@ const knex = require('knex')(knexConfig[ENV]);
 
 // Seperate routes
 
-const userRoutes = require('./routes/user');
-const mainRoute = require('./routes/route');
+// const userRoutes = require('./routes/user');
 
-// const concertRoutes = require('./routes/concert');
+const mainRoute = require('./routes/main');
 // const tripRoutes = require('./routes/trip');
 // const playlistRoutes = require('./routes/playlist');
+// const concertRoutes = require('./routes/concert');
 
 // Cookie logic
 const shortid = require('shortid');
 const cookieSession = require('cookie-session');
+
 app.use(cookieSession({
   name: 'session',
-  keys: ["hksdn"],
-  maxAge: 24 * 60 * 60 * 1000
+  keys: ['hksdn'],
+  maxAge: 24 * 60 * 60 * 1000,
 }));
 
 app.use((req, res, next) => {
@@ -47,18 +52,18 @@ app.use((req, res, next) => {
 
 // Pulls static files from build folder if in production mode, otherwise will start webpack dev server and hotmodule
 
-if(ENV === 'production') {
+if (ENV === 'production') {
   app.use(express.static('build'));
 } else {
   app.use(devserver(compiler, {
     watchOptions: {
       poll: 1000,
-      ignored: /node_modules/
+      ignored: /node_modules/,
     },
     noInfo: true,
     stats: {
-      colors: true
-    }
+      colors: true,
+    },
   }));
   app.use(hotmodule(compiler));
 }
@@ -68,12 +73,12 @@ if(ENV === 'production') {
 
 // Mount all route files
 
-app.use(mainRoute(knex));
-app.use(userRoutes(knex));
+// app.use(userRoutes(knex));
 
 // app.use(tripRoutes(knex));
 // app.use(playlistRoutes(knex));
 // app.use(concertRoutes(knex));
+app.use(mainRoute(knex));
 
 // Below is an example API route:
 
@@ -83,5 +88,4 @@ app.use(userRoutes(knex));
 
 // Starts the server
   
-app.listen(PORT, '0.0.0.0', 'localhost', () => console.log(`Listening on ${ PORT } in ${ ENV } mode. Wait for compile...`));
-  
+app.listen(PORT, '0.0.0.0', 'localhost', () => console.log(`Listening on ${PORT} in ${ENV} mode. Wait for compile...`));
