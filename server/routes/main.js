@@ -8,18 +8,9 @@ module.exports = (knex) => {
   router.post('/trip', (req, res) => {
     const { saveTrip } = trip(knex);
     const { savePlaylist } = playlist(knex);
-    // const locations = req.location;
-    const locations = [
-      { city: 'vancouver', start_date: '20170820', end_date: '20170822' },
-      { city: 'toronto', start_date: '20170822', end_date: '20170823' },
-      { city: 'seattle', start_date: '20170824', end_date: '20170825' },
-    ];
 
-    // const genres = req.genre;
-    const genres = [
-      'Rock',
-      'Rap',
-    ];
+    const locations = req.body.locations;
+    const genres = req.body.genres;
 
     const categories = genres.map(genre => `music_${genre.toLowerCase()}`).join(',');
 
@@ -46,7 +37,7 @@ module.exports = (knex) => {
       return Promise.all(playlistData.map(playlist => savePlaylist(Object.assign(playlist, { trip_id: trip_id[0] }), getQuery(playlist.city))));
     }).then((concerts) => {
       const concertData = { concerts, playlist: playlistData };
-      res.json(concertData);
+      res.send(JSON.stringify(concertData));
     });
   });
 
