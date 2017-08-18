@@ -1,4 +1,7 @@
-import { setState, getState } from './appState';
+import {
+  setState,
+  getState
+} from './appState';
 import Api from './api.js';
 
 // WHENEVER YOU WANT TO CHANGE THE STATE YOU MUST DEFINE AN ACTION THAT DOES SO
@@ -6,13 +9,21 @@ import Api from './api.js';
 // Actions up, data down
 
 export function setView(view) {
-  setState({ view });
+  setState({
+    view
+  });
 }
 
 export function addLocationField() {
   const currentLocations = getState().locations;
-  const newLocations = currentLocations.concat([{ city: '', start_date: '', end_date: '' }]);
-  setState({ locations: newLocations });
+  const newLocations = currentLocations.concat([{
+    city: '',
+    start_date: '',
+    end_date: ''
+  }]);
+  setState({
+    locations: newLocations
+  });
 }
 
 export function updateLocationField(index, city, start_date, end_date) {
@@ -20,7 +31,11 @@ export function updateLocationField(index, city, start_date, end_date) {
   setState({
     locations: [
       ...currentLocations.slice(0, index),
-      { city, start_date, end_date },
+      {
+        city,
+        start_date,
+        end_date
+      },
       ...currentLocations.slice(index + 1),
     ],
   });
@@ -60,7 +75,10 @@ export function updateConcertIndex(number, totalEvents) {
 
 
 export function storeFormDataAsync() {
-  Api.post('/trip', { locations: getState().locations, genres: getState().genres })
+  Api.post('/trip', {
+    locations: getState().locations,
+    genres: getState().genres,
+  })
     .then((response) => {
       return response.json();
     })
@@ -71,6 +89,15 @@ export function storeFormDataAsync() {
     .then(() => setView('itinerary'));
 }
 
-// export function registerUser() {
-//   Api.post('/new_user', { })
-// }
+//given user data this function will store firstname, last name, and email in the state and also persist that information in the server
+export function userRegister(firstname, lastname, email, password, confirmPassword) {
+  setState({
+    user: { firstname, lastname, email },
+  });
+  Api.post('/new_user', {
+    firstname, lastname, email, password, confirmPassword,
+  }).then((response) => {
+    console.log(response);
+    return response.json();
+  });
+}
