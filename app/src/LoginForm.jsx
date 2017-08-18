@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 
 class LoginForm extends Component {
 
-  h_ckinSubmit() {
-    // get username and password
-    //    you can do this by walking the DOM
-    //    or you can do this by using React Managed Components
-    // use Fetch to POST to the endpoint
-    //    it's the endpoint's business to set appropriate cookies
-    //    future calls to other endpoints will be able to read this cookie to validate auth
-    //    WARNING: Fetch and cookies are a little weird together, pay attention
-    // check response status:
-    // if 200, call this.props.setLoggedIn(true)
-    // otherwise show failure to the user
-  }
+// userInfoSubmit() {
+//     // get username and password
+//     //    you can do this by walking the DOM
+//     //    or you can do this by using React Managed Components
+//     // use Fetch to POST to the endpoint
+//     //    it's the endpoint's business to set appropriate cookies
+//     //    future calls to other endpoints will be able to read this cookie to validate auth
+//     //    WARNING: Fetch and cookies are a little weird together, pay attention
+//     // check response status:
+//     // if 200, call this.props.setLoggedIn(true)
+//     // otherwise show failure to the user
+//   }
 
 
   render() {
@@ -35,7 +35,7 @@ class LoginForm extends Component {
                   className="input"
                   type="email"
                   placeholder="Email"
-                  onChange={(event) => { } }
+                  onChange={(event) => { console.log(event.target.value); }}
                 />
                 <span className="icon is-small is-left">
                   <i className="fa fa-envelope"/>
