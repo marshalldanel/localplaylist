@@ -7,7 +7,7 @@ class ConcertMarquee extends Component {
     const concertData = this.props.concertData;
 
     const concertViewIndex = this.props.concertView;
-    const events = concertData.search.events.event;
+    const events = concertData.events.event;
     const maxInView = 3;
     const start = concertViewIndex % events.length;
     const end = start + maxInView;
