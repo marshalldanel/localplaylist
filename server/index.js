@@ -21,10 +21,30 @@ const compiler = webpack(webpackconfig);
 const PORT = 3000;
 const ENV = process.env.NODE_ENV || 'development';
 
-// Setup Knex files and connect to database
+// Setup Morgan logger and set to skip all JSON files
+
+const morgan = require('morgan');
+
+function skipLog(req, res) {
+  let url = req.url;
+  if (url.indexOf('?') > 0) {
+    url = url.substr(0, url.indexOf('?'));
+  }
+  if (url.match(/(json)$/ig)) {
+    return true;
+  }
+  return false;
+}
+
+app.use(morgan('dev', { skip: skipLog }));
+
+// Setup Knex files, include Knex logger and connect to database
 
 const knexConfig = require('../knexfile');
 const knex = require('knex')(knexConfig[ENV]);
+const knexLogger = require('knex-logger');
+
+app.use(knexLogger(knex));
 
 // Seperate route requires
 
