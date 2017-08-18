@@ -71,3 +71,6 @@ export function storeFormDataAsync() {
     .then(() => setView('itinerary'));
 }
 
+// export function registerUser() {
+//   Api.post('/new_user', { })
+// }
