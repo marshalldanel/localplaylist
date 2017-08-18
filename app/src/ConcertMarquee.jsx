@@ -4,7 +4,6 @@ import { updateConcertIndex } from './actions.js';
 
 class ConcertMarquee extends Component {
   render() {
-    console.log(this.props);
     const concertData = this.props.concertData;
 
     const concertViewIndex = this.props.concertView;
