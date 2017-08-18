@@ -4,8 +4,7 @@ exports.up = function(knex, Promise) {
     knex.schema.createTable('trips', function(table){
       table.increments('id').primary();
       table.string('name').notNull();
-      table.integer('user_id').unsigned();
-      // .notNull();
+      table.integer('user_id').unsigned().notNull();
       table.foreign('user_id').references('users.id');
       table.timestamps();
     })
