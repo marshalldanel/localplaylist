@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class LoginForm extends Component {
   render() {
-    let showModal = this.props.isActive;
+    const showModal = this.props.isActive;
 
     return (
       <div className={showModal}>
@@ -13,7 +13,24 @@ class LoginForm extends Component {
             <button className="delete" onClick={() => { this.props.allGone(); }} />
           </header>
           <section className="modal-card-body">
-            The inputs go here
+            <div className="field">
+              <label className="label">Email</label>
+              <div className="control has-icons-left has-icons-right">
+                <input className="input" type="email" placeholder="Email"/>
+                <span className="icon is-small is-left">
+                  <i className="fa fa-envelope"/>
+                </span>
+              </div>
+            </div> 
+            <div className="field">
+              <label className="label">Password</label>
+              <div className="control has-icons-left has-icons-right">
+                <input className="input" type="password" placeholder="Password" />
+                <span className="icon is-small is-left">
+                  <i className="fa fa-lock" />
+                </span>
+              </div>
+            </div>
           </section>
           <footer className="modal-card-foot">
             <a className="button is-success">Submit</a>
