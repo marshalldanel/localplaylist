@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import ConcertMarquee from './ConcertMarquee.jsx';
 import NavBar from './NavBar.jsx';
 import { setView } from './actions.js';
-import QuestionsContainer from './QuestionsContainer.jsx';
-// import Playlist from './Playlist.jsx';
 import Home from './Home.jsx';
 
 // THIS WILL NEVER CONTAIN THIS.STATE ANYWHERE - 
 class App extends Component {
   render() {
+    console.log(this.props.concerts);
     return (
       <div className="main-container">
         <NavBar />
@@ -16,9 +14,8 @@ class App extends Component {
           view={this.props.view}
           locations={this.props.locations}
           genres={this.props.genres}
+          concertData={this.props.concerts}
         />
-        <ConcertMarquee concertData={this.props.concerts} concertView={this.props.concerts_view_index} />
-        {/* <Playlist /> */}
         <footer className="footer"> FOOTER </footer>
       </div>
     );

@@ -12,7 +12,7 @@ class CitiesResults extends Component {
 
     const trips = locations.map((trip, index) => {
       if (trip.city) {
-        return (<CityCard key={index} trip={trip} />);
+        return (<CityCard key={index} trip={trip} concertData={this.props.concertData} />);
       }
     });
 

@@ -24,7 +24,7 @@ class Home extends Component {
     } else if (view === 'itinerary') {
       return (
         <div>
-          <CitiesResults locations={this.props.locations} />
+          <CitiesResults locations={this.props.locations} concertData={this.props.concertData} />
         </div>
       );
     }
