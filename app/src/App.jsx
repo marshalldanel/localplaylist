@@ -13,7 +13,7 @@ class App extends Component {
       <div className="main-container">
         <NavBar />
         <QuestionsContainer view={this.props.view} locations={this.props.locations} genres={this.props.genres} />
-        <ConcertMarquee />
+        <ConcertMarquee concertData={this.props.concerts} concertView={this.props.concerts_view_index} />
         <CitiesResults locations={this.props.locations} />
         <Playlist />
         <footer className="footer" />
