@@ -12,12 +12,12 @@ class App extends Component {
     return (
       <div className="main-container">
         <NavBar />
-        <Home 
+        <Home
           view={this.props.view}
           locations={this.props.locations}
           genres={this.props.genres}
         />
-        {/* <ConcertMarquee concertData={this.props.concerts} concertView={this.props.concerts_view_index} /> */}
+        <ConcertMarquee concertData={this.props.concerts} concertView={this.props.concerts_view_index} />
         {/* <Playlist /> */}
         <footer className="footer"> FOOTER </footer>
       </div>
