@@ -42,6 +42,21 @@ export function updateGenreField(genre) {
   }
 }
 
+export function updateConcertIndex(number, totalEvents) {
+  const currentIndex = getState().concerts_view_index;
+  let newIndex = 0;
+
+  if (currentIndex <= 0 && number === -1) {
+    newIndex = totalEvents - 1;
+  } else {
+    newIndex = currentIndex + number;
+  }
+
+  setState({
+    concerts_view_index: newIndex,
+  });
+}
+
 
 // export function storeFormDataAsync() {
 //   Api.post('/itinerary', { locations: getState().locations, genres: getState().genres }).then(() => setView('usertrips'));

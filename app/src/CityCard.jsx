@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Playlist from './PLaylist.jsx';
 import ConcertMarquee from './ConcertMarquee.jsx';
 
 class CityCard extends Component {
@@ -37,7 +36,6 @@ class CityCard extends Component {
         {(this.state.unrolled ? (
           <div>
             <ConcertMarquee />
-            <Playlist />
           </div>
         ) : null)}
       </div>

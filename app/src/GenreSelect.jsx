@@ -105,7 +105,7 @@ class GenreSelect extends Component {
         <h2 className="subtitle has-text-centered is-size-2">Select your favourite genres</h2>
         <div className="columns">
           <div className="column is-2" />
-          <div classNames="column is-8">
+          <div className="column is-8">
             <div className="columns is-multiline">
               {genreSelector}
             </div>
