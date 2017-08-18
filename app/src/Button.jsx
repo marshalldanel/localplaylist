@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { setView } from './actions.js';
+import { setView, storeFormDataAsync } from './actions.js';
 
 class Button extends Component {
   render() {
@@ -8,7 +8,7 @@ class Button extends Component {
     if (this.props.view === 'locations') {
       isButton = <button className="button is-primary column is-one-third is-centred" onClick={() => { setView('genres'); }}> Select Genres </button>;
     } else if (this.props.view === 'genres') {
-      isButton = <button className="button is-primary column is-one-third is-centred" onClick={() => { setView('itinerary'); }}> See your trip! </button>;
+      isButton = <button className="button is-primary column is-one-third is-centred" onClick={() => { storeFormDataAsync(); }}> See your trip! </button>;
     } else {
       isButton = <div />;
     }

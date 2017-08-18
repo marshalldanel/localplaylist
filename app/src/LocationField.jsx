@@ -43,7 +43,7 @@ class LocationField extends Component {
                 <input className="date input" type="date" placeholder="dd/mm/yyyy" name="start_date"
                   onChange={(event) => {
                     this.setState({
-                      start_date: event.target.value,
+                      start_date: event.target.value.split('-').join(''),
                       error: null,
                     }, this.updateField);
                   }} />
@@ -56,7 +56,7 @@ class LocationField extends Component {
                 <input className="date input" type="date" placeholder="dd/mm/yyyy" name="end_date"
                   onChange={(event) => {
                     this.setState({
-                      end_date: event.target.value,
+                      end_date: event.target.value.split('-').join(''),
                       error: null,
                     }, this.updateField);
                   }} />

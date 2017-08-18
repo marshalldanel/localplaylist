@@ -1,4 +1,5 @@
 import { setState, getState } from './appState';
+import Api from './api.js';
 
 // WHENEVER YOU WANT TO CHANGE THE STATE YOU MUST DEFINE AN ACTION THAT DOES SO
 // KEEP YOUR VIEWS DUMB
@@ -58,7 +59,15 @@ export function updateConcertIndex(number, totalEvents) {
 }
 
 
-// export function storeFormDataAsync() {
-//   Api.post('/itinerary', { locations: getState().locations, genres: getState().genres }).then(() => setView('usertrips'));
-// }
+export function storeFormDataAsync() {
+  Api.post('/trip', { locations: getState().locations, genres: getState().genres })
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      const concertArr = data.concerts[0][0].events.event[0];
+      const eventPerformerInfo = concertArr.performers;
+    })
+    .then(() => setView('itinerary'));
+}
 

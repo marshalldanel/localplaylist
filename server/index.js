@@ -1,10 +1,11 @@
 const path = require('path');
 const express = require('express');
 
-// Access enviorment variables
-require('dotenv').config();
-
 const app = express();
+
+// Access enviorment variables
+
+require('dotenv').config();
 
 // Initializes webpack functions on the server, and compiles.
 
@@ -29,6 +30,11 @@ const knex = require('knex')(knexConfig[ENV]);
 
 // const userRoutes = require('./routes/user');
 const mainRoute = require('./routes/main');
+
+// This is for body parser
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.json({ extended: true }));
 
 // Cookie logic
 
