@@ -89,7 +89,6 @@ export function storeFormDataAsync() {
     .then(() => setView('itinerary'));
 }
 
-//given user data this function will store firstname, last name, and email in the state and also persist that information in the server
 export function userRegister(firstname, lastname, email, password, confirmPassword) {
   setState({
     user: { firstname, lastname, email },
