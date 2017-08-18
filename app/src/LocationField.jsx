@@ -10,11 +10,11 @@ class LocationField extends Component {
       city: '',
       start_date: '',
       end_date: '',
-      error: null
-    }
+      error: null,
+    };
   }
 
-  updateField() {    
+  updateField() {
     updateLocationField(this.props.index, this.state.city, this.state.start_date, this.state.end_date);
   }
 
