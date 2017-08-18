@@ -73,6 +73,7 @@ export function updateConcertIndex(number, totalEvents) {
   });
 }
 
+// export function 
 
 export function storeFormDataAsync() {
   Api.post('/trip', {
@@ -83,8 +84,12 @@ export function storeFormDataAsync() {
       return response.json();
     })
     .then((data) => {
-      const concertArr = data.concerts[0][0].events.event[0];
-      const eventPerformerInfo = concertArr.performers;
+      // Prints out response
+      console.log(data);
+      const concerts = data.concerts[0];
+      console.log('concerts', concerts);
+
+      setState({ concerts });
     })
     .then(() => setView('itinerary'));
 }
