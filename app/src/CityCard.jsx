@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ConcertMarquee from './ConcertMarquee.jsx';
+import Playlist from './Playlist.jsx';
 
 class CityCard extends Component {
   constructor(props) {
@@ -35,7 +36,8 @@ class CityCard extends Component {
         </box>
         {(this.state.unrolled ? (
           <div>
-            <ConcertMarquee />
+            <ConcertMarquee concertData={this.props.concertData} />
+            <Playlist />
           </div>
         ) : null)}
       </div>

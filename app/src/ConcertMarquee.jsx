@@ -12,7 +12,14 @@ class ConcertMarquee extends Component {
     const start = concertViewIndex % events.length;
     const end = start + maxInView;
 
-    const concerts = events.slice(start, end).concat(events.slice(0, Math.max(0, end - events.length))).map((concert, index) => <ConcertCard key={index} concert={concert} />);
+    const concerts = events
+    // .slice(start, end)
+    //   .concat(events.slice(0, Math.max(0, end - events.length)))
+      .map((concert, index) => {
+        return (
+          <ConcertCard key={index} concert={concert}
+          />)
+      });
 
     const numberOfPages = Math.ceil(events.length / maxInView);
     const currentPage = Math.floor(start / numberOfPages) + 1;
