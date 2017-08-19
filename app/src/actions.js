@@ -90,15 +90,8 @@ export function storeFormDataAsync() {
     })
     .then((data) => {
       // Prints out response
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> master
-      const concerts = data.concerts[0];
 
-=======
       const concerts = data.concerts;
->>>>>>> 41fa4e458829f7390e61e60fc52a04099d9a3964
       setState({ concerts });
     })
     .then(() => setView('itinerary'));
