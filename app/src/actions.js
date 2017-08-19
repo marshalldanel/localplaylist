@@ -111,7 +111,7 @@ export function getUserName() {
 }
 
 export function userLogin(email, password) {
-  console.log(email,password);
+  console.log(email, password);
   Api.post('/login', {
     email, password,
   }).then((response) => {
