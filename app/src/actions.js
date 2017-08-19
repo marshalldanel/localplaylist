@@ -18,6 +18,10 @@ export function getConcerts() {
   return getState().concerts;
 }
 
+export function getConcertViewIndex() {
+  return getState().concerts_view_index;
+}
+
 
 export function addLocationField() {
   const currentLocations = getState().locations;
@@ -91,7 +95,9 @@ export function storeFormDataAsync() {
     .then((data) => {
       // Prints out response
 
-      const concerts = data.concerts;
+      const concerts = data.concerts.map((concert) => {
+        return concert[0];
+      });
       setState({ concerts });
     })
     .then(() => setView('itinerary'));
