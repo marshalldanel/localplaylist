@@ -85,10 +85,7 @@ export function storeFormDataAsync() {
     })
     .then((data) => {
       // Prints out response
-      console.log(data);
-      const concerts = data.concerts[0];
-      console.log('concerts', concerts);
-
+      const concerts = data.concerts;
       setState({ concerts });
     })
     .then(() => setView('itinerary'));
