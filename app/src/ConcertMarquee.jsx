@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import ConcertCard from './ConcertCard.jsx';
-import { updateConcertIndex } from './actions.js';
+import { updateConcertIndex, getConcerts } from './actions.js';
 
 class ConcertMarquee extends Component {
   render() {
-    const concertData = this.props.concertData;
+    const concertData = getConcerts();
     const concertViewIndex = this.props.concertView;
+    console.log(concertData);
 
 
     const events = concertData[0].events.event;
@@ -23,8 +24,8 @@ class ConcertMarquee extends Component {
     // const end = start + maxInView;
 
     const concerts = events
-    // .slice(start, end)
-    //   .concat(events.slice(0, Math.max(0, end - events.length)))
+      .slice(start, end)
+      .concat(events.slice(0, Math.max(0, end - events.length)))
       .map((concert, index) => {
         return (
           <ConcertCard key={index} concert={concert}

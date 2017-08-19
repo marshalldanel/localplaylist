@@ -12,7 +12,7 @@ class CityCard extends Component {
 
   render() {
     const trip = this.props.trip;
-    let boxClass = "box is-primary is-outlined is-large";
+    const boxClass = 'box is-primary is-outlined is-large';
 
     return (
       <div>
@@ -36,7 +36,7 @@ class CityCard extends Component {
         </box>
         {(this.state.unrolled ? (
           <div>
-            {/* <ConcertMarquee concertData={this.props.concertData} /> */}
+            <ConcertMarquee concertData={this.props.concertData} />
             <Playlist />
           </div>
         ) : null)}
