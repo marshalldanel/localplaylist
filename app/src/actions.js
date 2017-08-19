@@ -22,7 +22,7 @@ export function addLocationField() {
     end_date: ''
   }]);
   setState({
-    locations: newLocations
+    locations: newLocations,
   });
 }
 
@@ -103,5 +103,21 @@ export function userRegister(firstname, lastname, email, password, confirmPasswo
   }).then((response) => {
     console.log(response);
     return response.json();
+  });
+}
+
+export function getUserName() {
+  const userName = getState().firstname;
+}
+
+export function userLogin(email, password) {
+  console.log(email,password);
+  Api.post('/login', {
+    email, password,
+  }).then((response) => {
+    console.log(response);
+    return response.json();
+    //here we should get the user's first name in the response (resonse.body.firstname)
+    //such that we can get the username to display in nav
   });
 }
