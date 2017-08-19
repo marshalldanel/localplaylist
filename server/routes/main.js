@@ -37,11 +37,7 @@ module.exports = (knex) => {
     saveTrip(tripData).then((trip_id) => {
       return Promise.all(playlistData.map(playlist => savePlaylist(Object.assign(playlist, { trip_id: trip_id[0] }), getQuery(playlist.city))));
     }).then((concerts) => {
-      // console.log(concerts);
-      // const concertData = { concerts, playlist: playlistData };
-      console.log('concerts', concerts);
       const concertData = { concerts };
-      console.log('concertData', concertData);
       res.send(JSON.stringify(concertData));
     });
   });
