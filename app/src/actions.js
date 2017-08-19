@@ -77,42 +77,72 @@ export function updateConcertIndex(number, totalEvents) {
 
 export function storeFormDataAsync() {
   Api.post('/trip', {
-    locations: getState().locations,
-    genres: getState().genres,
-  })
+      locations: getState().locations,
+      genres: getState().genres,
+    })
     .then((response) => {
       return response.json();
     })
     .then((data) => {
       // Prints out response
       const concerts = data.concerts;
-      setState({ concerts });
+      setState({
+        concerts
+      });
     })
     .then(() => setView('itinerary'));
 }
 
 export function userRegister(firstname, lastname, email, password, confirmPassword) {
   setState({
-    user: { firstname, lastname, email },
+    user: {
+      firstname,
+      lastname,
+      email,
+    },
   });
   Api.post('/new_user', {
-    firstname, lastname, email, password, confirmPassword,
+    firstname,
+    lastname,
+    email,
+    password,
+    confirmPassword,
+    loggedIn: true,
   }).then((response) => {
     return response.json();
   });
-}
-
-export function getUserName() {
-  const userName = getState().firstname;
 }
 
 export function userLogin(email, password) {
   Api.post('/login', {
-    email, password,
-  }).then((response) => {
-    console.log(response);
-    return response.json();
-    //here we should get the user's first name in the response (resonse.body.firstname)
-    //such that we can get the username to display in nav
-  });
+      email,
+      password,
+    })
+
+    // console.log()
+    // return (result);
+
+    .then((response) => {
+      return response.json();
+    }).then((response) => {
+      if (response !== 'error') {
+        setState({
+          user: {
+            firstname: response,
+            loggedIn: true,
+          },
+        });
+      }
+    });
+}
+
+export function getUserName() {
+  return getState().firstname;
+}
+
+export function spotifyAuth() {
+  Api.get('/spotify')
+    .then((response) => {
+      console.log(response);
+    });
 }

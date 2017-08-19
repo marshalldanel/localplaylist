@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LoginForm from './LoginForm.jsx';
 import RegisterForm from './RegisterForm.jsx';
+import { spotifyAuth } from './actions.js';
 
 
 class NavBar extends Component {
@@ -23,6 +24,11 @@ class NavBar extends Component {
         <nav className="navbar">
           <h1 className="navbar-brand">Tripify</h1>
           <div className="navbar-end">
+            <button
+              type="button"
+              className="spotify-button button is primary"
+              onClick={spotifyAuth}
+            >Log in to Spotify!</button>
             <button
               type="button"
               className="button is-primary"

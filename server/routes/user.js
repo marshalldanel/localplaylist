@@ -51,18 +51,18 @@ module.exports = (knex) => {
           if (!users.length) {
             return Promise.reject(new Error("user not found!"));
           }
-          return knex('users').where('id', users[0].id).returning('*')
-            .then((name) => {
-              const password_digest = name[0].password_digest;
+          return knex('users').where('id', users[0].id)
+            .then((user) => {
+              const password_digest = user[0].password_digest;
               if (!bcrypt.compareSync(password, password_digest)) {
                 return Promise.reject(new Error('incorrect password'));
               }
-              return knex('users').where('id', name[0].id).returning('first_name')
+              return knex('users').where('id', user[0].id)
                 .update({
                   user_cookie,
                 })
                 .then(() => {
-                  res.status(200).send(name);
+                  res.status(200).send(JSON.stringify(user[0].first_name));
                 })
                 .catch((error) => {
                   res.status(500).send(error);
