@@ -12,31 +12,33 @@ class CityCard extends Component {
 
   render() {
     const trip = this.props.trip;
-    let boxClass = "box is-primary is-outlined is-large";
+    const boxClass = 'box is-primary is-outlined is-large';
 
     return (
       <div>
-        <box
-          className={boxClass}
-          onClick={() => { this.setState({ unrolled: !this.state.unrolled }); }}
-        >
-          <div className="columns">
-            <div className="column is-1">
-              <span className="icon">
-                <i className="fa fa-angle-down" />
-              </span>
+        <div className="container">
+          <box
+            className={boxClass}
+            onClick={() => { this.setState({ unrolled: !this.state.unrolled }); }}
+          >
+            <div className="columns">
+              <div className="column is-1">
+                <span className="icon">
+                  <i className="fa fa-angle-down" />
+                </span>
+              </div>
+              <div className="column is-8">
+                <span>{trip.city}</span>
+              </div>
+              <div className="column has-text-right">
+                <span>{trip.start_date} - {trip.end_date}</span>
+              </div>
             </div>
-            <div className="column is-8">
-              <span>{trip.city}</span>
-            </div>
-            <div className="column has-text-right">
-              <span>{trip.start_date} - {trip.end_date}</span>
-            </div>
-          </div>
-        </box>
+          </box>
+        </div>
         {(this.state.unrolled ? (
           <div>
-            {/* <ConcertMarquee concertData={this.props.concertData} /> */}
+            <ConcertMarquee />
             <Playlist />
           </div>
         ) : null)}
