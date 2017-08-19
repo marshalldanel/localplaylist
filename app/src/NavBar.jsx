@@ -39,7 +39,10 @@ class NavBar extends Component {
             <LoginForm isActive="modal is-active" allGone={this.goAwayModal} />
           ) : null)}
           {(this.state.registerModal ? (
-            <RegisterForm isActive="modal is-active" allGone={this.goAwayModal} />
+            <RegisterForm
+              isActive="modal is-active"
+              allGone={this.goAwayModal}
+            />
           ) : null)}
         </nav>
       </header>

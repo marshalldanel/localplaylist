@@ -1,4 +1,5 @@
 const express = require('express');
+
 const router = express.Router();
 const cookieSession = require('cookie-session');
 const bcrypt = require('bcrypt');
@@ -6,40 +7,35 @@ const bcrypt = require('bcrypt');
 module.exports = (knex) => {
   // Create a new user
   router.post('/new_user', (req, res) => {
-    // const first_name = 'Marshall'; //req.body.first_name,
-    // const last_name = 'D'; //req.body.last_name,
-    // const email = 'marshall@marshall.com'; //req.body.email,
-    const password = 'marshall'; //req.body.password;
+    const first_name = req.body.firstname;
+    const last_name = req.body.lastname;
+    const email = req.body.email;
+    const password = req.body.password;
     const hashedPassword = bcrypt.hashSync(password, 10);
     const user_cookie = req.session.user_cookie; // cookie
     console.log('before transaction');
     knex.transaction(() => {
       console.log('transaction started');
-      return knex('users').select('id').where('user_cookie', user_cookie)
-        .returning('id')
-        .then((id) => {
-          if (!id.length) {
-            return knex('users')
-              .insert({
-                user_cookie,
-              }).returning('id');
+      return knex('users').select('id').where('user_cookie', user_cookie).returning('id')
+        .then((users) => {
+          if (!users.length) {
+            return knex('users').insert({ user_cookie }).returning('id');
           }
-          console.log('before insert');
-          return knex('users').select('id').where('id', id[0].id)
-            .returning('id')
-            .insert({
-              first_name: 'Marshall',
-              last_name: 'D',
-              email: 'm@m.com',
+
+          let id = users[0].id;
+
+          return knex('users').where('id', id).returning('first_name')
+            .update({
+              first_name,
+              last_name,
+              email,
               password_digest: hashedPassword,
-              created_at: `to_timestamp(${Date.now()} / 1000.0)`,
             })
-            .returning('first_name')
             .then((name) => {
               res.status(200).send(name);
             })
             .catch((error) => {
-              res.status(404).send(error);
+              res.status(500).send(error);
             });
         });
     });

@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
+import { userRegister } from './actions.js';
 
 class RegisterForm extends Component {
+  updateUser(event) {
+    event.preventDefault();
+    userRegister(
+      event.target.querySelector("[name=firstname]").value,
+      event.target.querySelector("[name=lastname]").value,
+      event.target.querySelector("[name=email]").value,
+      event.target.querySelector("[name=password]").value,
+      event.target.querySelector("[name=confirmPassword]").value,
+    );
+  }
+
   render() {
     let showModal = this.props.isActive;
 
@@ -12,57 +24,86 @@ class RegisterForm extends Component {
             <p className="modal-card-title">Register to Tripify</p>
             <button className="delete" onClick={() => { this.props.allGone(); }} />
           </header>
-          <section className="modal-card-body">
-            <div className="field">
-              <label className="label">Firstname</label>
-              <div className="control has-icons-left has-icons-right">
-                <input className="input" type="text" placeholder="e.g. John" />
-                <span className="icon is-small is-left">
-                  <i className="fa fa-user-circle" />
-                </span>
+          <form onSubmit={this.updateUser.bind(this)}>
+            <section className="modal-card-body">
+              <div className="field">
+                <label className="label">Firstname</label>
+                <div className="control has-icons-left has-icons-right">
+                  <input
+                    className="input"
+                    type="text"
+                    placeholder="e.g. Mickey"
+                    name="firstname"
+                  />
+                  <span className="icon is-small is-left">
+                    <i className="fa fa-user-circle" />
+                  </span>
+                </div>
               </div>
-            </div>
-            <div className="field">
-              <label className="label">Lastname</label>
-              <div className="control has-icons-left has-icons-right">
-                <input className="input" type="text" placeholder="e.g. Smith" />
-                <span className="icon is-small is-left">
-                  <i className="fa fa-user-circle" />
-                </span>
+              <div className="field">
+                <label className="label">Lastname</label>
+                <div className="control has-icons-left has-icons-right">
+                  <input
+                    className="input"
+                    type="text"
+                    placeholder="e.g. Smith"
+                    name="lastname"
+                  />
+                  <span className="icon is-small is-left">
+                    <i className="fa fa-user-circle" />
+                  </span>
+                </div>
               </div>
-            </div>
-            <div className="field">
-              <label className="label">Email</label>
-              <div className="control has-icons-left has-icons-right">
-                <input className="input" type="email" placeholder="Email" />
-                <span className="icon is-small is-left">
-                  <i className="fa fa-envelope" />
-                </span>
+              <div className="field">
+                <label className="label">Email</label>
+                <div className="control has-icons-left has-icons-right">
+                  <input
+                    className="input"
+                    type="email"
+                    placeholder="Email"
+                    name="email"
+                  />
+                  <span className="icon is-small is-left">
+                    <i className="fa fa-envelope" />
+                  </span>
+                </div>
               </div>
-            </div>
-            <div className="field">
-              <label className="label">Password</label>
-              <div className="control has-icons-left has-icons-right">
-                <input className="input" type="password" placeholder="Password" />
-                <span className="icon is-small is-left">
-                  <i className="fa fa-lock" />
-                </span>
+              <div className="field">
+                <label className="label">Password</label>
+                <div className="control has-icons-left has-icons-right">
+                  <input
+                    className="input"
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                  />
+                  <span className="icon is-small is-left">
+                    <i className="fa fa-lock" />
+                  </span>
+                </div>
               </div>
-            </div>
-            <div className="field">
-              <label className="label">Confirm Password</label>
-              <div className="control has-icons-left has-icons-right">
-                <input className="input" type="password" placeholder="Password" />
-                <span className="icon is-small is-left">
-                  <i className="fa fa-lock" />
-                </span>
+              <div className="field">
+                <label className="label">Confirm Password</label>
+                <div className="control has-icons-left has-icons-right">
+                  <input
+                    className="input"
+                    type="password"
+                    placeholder="Password"
+                    name="confirmPassword"
+                  />
+                  <span className="icon is-small is-left">
+                    <i className="fa fa-lock" />
+                  </span>
+                </div>
               </div>
-            </div>
-          </section>
-          <footer className="modal-card-foot">
-            <a className="button is-success">Submit</a>
-            <a className="button" onClick={() => { this.props.allGone(); }}>Cancel</a>
-          </footer>
+            </section>
+            <footer className="modal-card-foot">
+              <button
+                className="button is-success"
+              >Register!</button>
+              <a className="button" onClick={() => { this.props.allGone(); }}>Cancel</a>
+            </footer>
+          </form>
         </div>
       </div>
     );
