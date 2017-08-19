@@ -4,7 +4,7 @@ require('dotenv').config();
 
 module.exports = knex => ({
 
-  getConcertData: (id, query) => {
+  getConcertData: (id, query, playlistData) => {
     return new Promise((resolve, reject) => {
       let apiResponse = '';
       
@@ -21,12 +21,13 @@ module.exports = knex => ({
           apiResponse += response.toString();
         })
         .on('end', () => {
-          const response = JSON.parse(apiResponse);
+          const eventResponse = JSON.parse(apiResponse);
+          console.log(eventResponse);
           knex('concerts').insert({
-            eventful_json: response,
+            eventful_json: eventResponse,
             playlist_id: id,
           }).then(() => {
-            resolve(response);
+            resolve(Object.assign(playlistData, { eventResponse }));
           });
         });
     });

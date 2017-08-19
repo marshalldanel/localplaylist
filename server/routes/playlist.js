@@ -7,7 +7,7 @@ module.exports = knex => ({
     return knex('playlists')
       .insert(playlistData)
       .returning('id')
-      .then(ids => Promise.all(ids.map(id => getConcertData(id, queries))));
+      .then(ids => Promise.all(ids.map(id => getConcertData(id, queries, playlistData))));
   }),
   
 });
