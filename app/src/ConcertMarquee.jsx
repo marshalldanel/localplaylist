@@ -4,7 +4,8 @@ import { updateConcertIndex, getConcerts, getConcertViewIndex } from './actions.
 
 class ConcertMarquee extends Component {
   render() {
-    const ConcertObjNum = 0; // if concerts has more than one Obj, it needs to select one
+    const playlistNumber = this.props.index;
+    const ConcertObjNum = playlistNumber; // if concerts has more than one Obj, it needs to match with the right list to make a marquee
 
     const concertData = getConcerts();
     const playlistData = concertData[ConcertObjNum];
@@ -31,11 +32,9 @@ class ConcertMarquee extends Component {
 
     const numberOfPages = Math.ceil(events.length / maxInView);
     const currentPage = (Math.floor(start / maxInView) + 1);
-        console.log(start);
-      //  console.log(currentPage);
 
     return (
-      <div className="section">
+      <div className="section is-marginless">
         <div className="columns">
           <div className="column is-1" />
           <div className="column is-10">
