@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import CityCard from './CityCard.jsx';
+import { getConcerts } from './actions.js';
+
 
 class CitiesResults extends Component {
   render() {
-    const locations = this.props.locations;
+    const returnedQuery = getConcerts();
 
-    // Beware of this if statement! It will only render a card, if trip.city = true
-    // This is being used as a filter so that the null location in state isn't created. (There is always a null location...)
 
-    const trips = locations.map((trip, index) => {
-      if (trip.city) {
-        return (<CityCard key={index} trip={trip} concertData={this.props.concertData} />);
-      }
+    const trips = returnedQuery.map((locations, index) => {
+      return (<CityCard key={index} trip={locations} index={index} />);
     });
 
     return (
