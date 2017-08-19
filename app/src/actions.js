@@ -1,6 +1,6 @@
 import {
   setState,
-  getState
+  getState,
 } from './appState';
 import Api from './api.js';
 
@@ -10,19 +10,24 @@ import Api from './api.js';
 
 export function setView(view) {
   setState({
-    view
+    view,
   });
 }
+
+export function getConcerts() {
+  return getState().concerts;
+}
+
 
 export function addLocationField() {
   const currentLocations = getState().locations;
   const newLocations = currentLocations.concat([{
     city: '',
     start_date: '',
-    end_date: ''
+    end_date: '',
   }]);
   setState({
-    locations: newLocations
+    locations: newLocations,
   });
 }
 
@@ -34,7 +39,7 @@ export function updateLocationField(index, city, start_date, end_date) {
       {
         city,
         start_date,
-        end_date
+        end_date,
       },
       ...currentLocations.slice(index + 1),
     ],
@@ -85,9 +90,7 @@ export function storeFormDataAsync() {
     })
     .then((data) => {
       // Prints out response
-      console.log(data);
       const concerts = data.concerts[0];
-      console.log('concerts', concerts);
 
       setState({ concerts });
     })
@@ -101,7 +104,6 @@ export function userRegister(firstname, lastname, email, password, confirmPasswo
   Api.post('/new_user', {
     firstname, lastname, email, password, confirmPassword,
   }).then((response) => {
-    console.log(response);
     return response.json();
   });
 }
