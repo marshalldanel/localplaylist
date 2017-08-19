@@ -25,7 +25,7 @@ module.exports = (knex) => {
     });
 
     const tripData = {
-      name: 'name of trip',
+      name: 'Your trip',
       cookie: req.session.user_cookie,
     };
 
@@ -37,7 +37,7 @@ module.exports = (knex) => {
     saveTrip(tripData).then((trip_id) => {
       return Promise.all(playlistData.map(playlist => savePlaylist(Object.assign(playlist, { trip_id: trip_id[0] }), getQuery(playlist.city))));
     }).then((concerts) => {
-      const concertData = { concerts, playlist: playlistData };
+      const concertData = { concerts };
       res.send(JSON.stringify(concertData));
     });
   });
