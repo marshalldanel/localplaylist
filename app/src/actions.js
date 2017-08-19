@@ -108,6 +108,24 @@ export function userRegister(firstname, lastname, email, password, confirmPasswo
   Api.post('/new_user', {
     firstname, lastname, email, password, confirmPassword,
   }).then((response) => {
+<<<<<<< HEAD
+=======
     return response.json();
+  });
+}
+
+export function getUserName() {
+  const userName = getState().firstname;
+}
+
+export function userLogin(email, password) {
+  Api.post('/login', {
+    email, password,
+  }).then((response) => {
+    console.log(response);
+>>>>>>> 1aff168fd85ef03fbdbb1bfcd2fcb467c5f5f388
+    return response.json();
+    //here we should get the user's first name in the response (resonse.body.firstname)
+    //such that we can get the username to display in nav
   });
 }
