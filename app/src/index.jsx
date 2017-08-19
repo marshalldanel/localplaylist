@@ -3,10 +3,11 @@ import { render } from 'react-dom';
 import App from './App.jsx';
 import { setState } from './appState';
 
-//Fake concert data as per API. 
+// Fake concert data as per API. 
+// We need to remove this later!
 
 const fakeData = require('./fakedata.js');
-const concerts = fakeData.concerts[0];
+const concertData = fakeData.concerts;
 
 
 require('../styles/application.scss');
@@ -20,7 +21,7 @@ setState({
   user: null,
   locations: [{ city: '', start_date: '', end_date: '' }],
   genres: [],
-  conerts: concerts,
+  concerts: concertData,
   concerts_view_index: 0,
   songs: [],
 });
