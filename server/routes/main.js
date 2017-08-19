@@ -12,7 +12,8 @@ module.exports = (knex) => {
     const locations = req.body.locations;
     const genres = req.body.genres;
 
-    const categories = genres.map(genre => `music_${genre.toLowerCase()}`).join(',');
+    const categories = genres.length ? genres.map(genre => `music_${genre.toLowerCase()}`).join(',') : 'music';
+
 
     const playlistData = locations.map((location) => {
       return {

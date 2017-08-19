@@ -5,12 +5,22 @@ import { updateConcertIndex } from './actions.js';
 class ConcertMarquee extends Component {
   render() {
     const concertData = this.props.concertData;
-
     const concertViewIndex = this.props.concertView;
-    const events = concertData.events.event;
+
+
+    const events = concertData[0].events.event;
+    const event = concertData[0].events.event[0];
     const maxInView = 3;
     const start = concertViewIndex % events.length;
     const end = start + maxInView;
+
+    // const concertData = this.props.concertData;
+
+    // const concertViewIndex = this.props.concertView;
+    // const events = concertData.events.event;
+    // const maxInView = 3;
+    // const start = concertViewIndex % events.length;
+    // const end = start + maxInView;
 
     const concerts = events
     // .slice(start, end)

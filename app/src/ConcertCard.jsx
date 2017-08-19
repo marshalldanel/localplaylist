@@ -3,7 +3,11 @@ import React, { Component } from 'react';
 class ConcertCard extends Component {
   render() {
     const concert = this.props.concert;
+    const thumbnail = concert.image ? concert.image.medium.url : 'http://bulma.io/images/placeholders/128x128.png';
+
     return (
+
+      // Conditionals should be added to all null values
 
       <div className="column is-4">
         <div className="card">
@@ -11,7 +15,7 @@ class ConcertCard extends Component {
             <div className="media">
               <div className="media-left">
                 <figure className="image is-96x96">
-                  <img src={concert.image.medium.url} alt="Image" />
+                  <img src={thumbnail} alt="Concert Thumbnail" />
                 </figure>
               </div>
               <div className="media-content">
@@ -20,9 +24,9 @@ class ConcertCard extends Component {
                   <a href={concert.venue_url}>{concert.venue_name.replace(', The', '')}</a>
                   <br />
                   <small>
-                    {concert.start_time}
+                    {concert.start_time || ''}
                     <br />
-                    {concert.venue_address}, {concert.city_name}
+                    {concert.venue_address || ''}, {concert.city_name || ''}
                   </small>
                 </p>
 
