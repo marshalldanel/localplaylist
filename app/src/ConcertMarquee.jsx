@@ -1,39 +1,38 @@
 import React, { Component } from 'react';
 import ConcertCard from './ConcertCard.jsx';
-import { updateConcertIndex, getConcerts } from './actions.js';
+import { updateConcertIndex, getConcerts, getConcertViewIndex } from './actions.js';
 
 class ConcertMarquee extends Component {
   render() {
+    const ConcertObjNum = 0; // if concerts has more than one Obj, it needs to select one
+
     const concertData = getConcerts();
-    const concertViewIndex = this.props.concertView;
-    console.log(concertData);
+    const playlistData = concertData[ConcertObjNum];
+    const events = concertData[ConcertObjNum].eventResponse.events.event;
 
 
-    const events = concertData[0].events.event;
-    const event = concertData[0].events.event[0];
+    const concertViewIndex = getConcertViewIndex();
+
+
     const maxInView = 3;
     const start = concertViewIndex % events.length;
     const end = start + maxInView;
 
-    // const concertData = this.props.concertData;
-
-    // const concertViewIndex = this.props.concertView;
-    // const events = concertData.events.event;
-    // const maxInView = 3;
-    // const start = concertViewIndex % events.length;
-    // const end = start + maxInView;
-
     const concerts = events
       .slice(start, end)
       .concat(events.slice(0, Math.max(0, end - events.length)))
-      .map((concert, index) => {
+      .map((event, index) => {
         return (
-          <ConcertCard key={index} concert={concert}
-          />)
+          <ConcertCard
+            key={index}
+            concert={event}
+          />);
       });
 
     const numberOfPages = Math.ceil(events.length / maxInView);
-    const currentPage = Math.floor(start / numberOfPages) + 1;
+    const currentPage = (Math.floor(start / maxInView) + 1);
+        console.log(start);
+      //  console.log(currentPage);
 
     return (
       <div className="section">
