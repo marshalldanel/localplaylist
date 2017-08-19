@@ -6,7 +6,6 @@ import Home from './Home.jsx';
 // THIS WILL NEVER CONTAIN THIS.STATE ANYWHERE - 
 class App extends Component {
   render() {
-    console.log(this.props.concerts);
     return (
       <div className="main-container">
         <NavBar />
