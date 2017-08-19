@@ -36,7 +36,7 @@ class CityCard extends Component {
         </box>
         {(this.state.unrolled ? (
           <div>
-            <ConcertMarquee concertData={this.props.concertData} />
+            {/* <ConcertMarquee concertData={this.props.concertData} /> */}
             <Playlist />
           </div>
         ) : null)}

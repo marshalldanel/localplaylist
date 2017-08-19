@@ -51,6 +51,8 @@ app.use(knexLogger(knex));
 // const userRoutes = require('./routes/user');
 const mainRoute = require('./routes/main');
 
+const userRoute = require('./routes/user');
+
 // This is for body parser
 const bodyParser = require('body-parser');
 
@@ -99,6 +101,7 @@ if (ENV === 'production') {
 
 // app.use(userRoutes(knex));
 app.use(mainRoute(knex));
+app.use(userRoute(knex));
 
 // Below is an example API route:
 
