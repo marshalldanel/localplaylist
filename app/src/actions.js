@@ -101,7 +101,6 @@ export function userRegister(firstname, lastname, email, password, confirmPasswo
   Api.post('/new_user', {
     firstname, lastname, email, password, confirmPassword,
   }).then((response) => {
-    console.log(response);
     return response.json();
   });
 }
@@ -111,7 +110,6 @@ export function getUserName() {
 }
 
 export function userLogin(email, password) {
-  console.log(email, password);
   Api.post('/login', {
     email, password,
   }).then((response) => {
