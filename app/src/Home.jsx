@@ -3,6 +3,7 @@ import QuestionsContainer from './QuestionsContainer.jsx';
 import { setView } from './actions.js';
 import Button from './Button.jsx';
 import CitiesResults from './CitiesResults.jsx';
+import ConcertMarquee from './ConcertMarquee.jsx';
 
 class Home extends Component {
 
@@ -18,6 +19,7 @@ class Home extends Component {
             genres={this.props.genres}
           />
           <Button view={this.props.view} />
+           {/* <ConcertMarquee />  */}
         </div>
       );
       
