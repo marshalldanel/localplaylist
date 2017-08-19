@@ -85,9 +85,7 @@ export function storeFormDataAsync() {
     })
     .then((data) => {
       // Prints out response
-      console.log(data);
       const concerts = data.concerts[0];
-      console.log('concerts', concerts);
 
       setState({ concerts });
     })
