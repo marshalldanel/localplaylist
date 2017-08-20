@@ -3,6 +3,9 @@ import ConcertCard from './ConcertCard.jsx';
 import { updateConcertIndex, getConcerts, getConcertViewIndex } from './actions.js';
 
 class ConcertMarquee extends Component {
+
+  // TODO: Concert index state needs to be held within the component otherwise it will affect other ones.
+
   render() {
     const playlistNumber = this.props.index;
     const ConcertObjNum = playlistNumber; // if concerts has more than one Obj, it needs to match with the right list to make a marquee
