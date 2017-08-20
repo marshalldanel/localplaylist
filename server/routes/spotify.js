@@ -9,19 +9,19 @@ const router = express.Router();
 // const cookieParser = require('cookie-parser');
 // const shortid = require('shortid');
 
-// const client_id = process.env.SPOTIFY_CLIENT_ID;
-// const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
-// const redirect_uri = 'https://localhost:3000/callback';
+const client_id = process.env.SPOTIFY_CLIENT_ID;
+const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
+const redirect_uri = 'https://localhost:3000/callback';
 const STATE_KEY = 'spotify_auth_state';
 // spotify api wrapper
 
 // Spotify Web Node module
 module.exports = () => {
   const spotifyApi = new Spotify({
-    clientId: '214dbc817610429dacd2a605dffc61b4',
-    clientSecret: '709da82458df4728b8d53fece3c0d723',
-    redirectUri: 'https://localhost:3000/callback',
-    accessToken: 'BQArbj1_iKNl9wBQArbj1_iKNl9wo9B609SA-Gkm9gIiLk_nUVd_7J1cTsI-Hzx0XSbLhuCZPazriX9t3qe2K4vI2a12TQyMionwo9B609SA-Gkm9gIiLk_nUVd_7J1cTsI-Hzx0XSbLhuCZPazriX9t3qe2K4vI2a12TQyMionw',
+    clientId: client_id,
+    clientSecret: client_secret,
+    redirectUri: 'https://localhost:3000/',
+    // accessToken: 'BQArbj1_iKNl9wBQArbj1_iKNl9wo9B609SA-Gkm9gIiLk_nUVd_7J1cTsI-Hzx0XSbLhuCZPazriX9t3qe2K4vI2a12TQyMionwo9B609SA-Gkm9gIiLk_nUVd_7J1cTsI-Hzx0XSbLhuCZPazriX9t3qe2K4vI2a12TQyMionw',
 
   });
   console.log(spotifyApi);
