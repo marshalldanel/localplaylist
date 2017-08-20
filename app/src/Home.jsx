@@ -18,7 +18,7 @@ class Home extends Component {
             genres={this.props.genres}
           />
           <Button view={this.props.view} />
-           <CitiesResults />  
+           {/* <CitiesResults />   */}
 
         </div>
       );
