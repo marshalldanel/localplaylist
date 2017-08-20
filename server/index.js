@@ -48,11 +48,9 @@ app.use(knexLogger(knex));
 
 // Seperate route requires
 
-// const userRoutes = require('./routes/user');
 const mainRoute = require('./routes/main');
-
 const userRoute = require('./routes/user');
-
+const spotifyRoute = require('./routes/spotify');
 // This is for body parser
 const bodyParser = require('body-parser');
 
@@ -98,10 +96,17 @@ if (ENV === 'production') {
 // eg. https://stackoverflow.com/questions/28305120/differences-between-express-router-and-app-get
 
 // Mount all route files
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000/');
+  next();
+});
 
-// app.use(userRoutes(knex));
 app.use(mainRoute(knex));
 app.use(userRoute(knex));
+
+
+app.use(spotifyRoute());
+
 
 // Below is an example API route:
 
@@ -110,5 +115,5 @@ app.use(userRoute(knex));
 // });
 
 // Starts the server
-  
+
 app.listen(PORT, '0.0.0.0', 'localhost', () => console.log(`Listening on ${PORT} in ${ENV} mode. Wait for compile...`));
