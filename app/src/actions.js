@@ -22,6 +22,10 @@ export function getConcertViewIndex() {
   return getState().concerts_view_index;
 }
 
+export function userInfo() {
+  return getState().user;
+}
+
 
 export function addLocationField() {
   const currentLocations = getState().locations;
