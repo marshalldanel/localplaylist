@@ -22,7 +22,6 @@ class Api {
     return axios.get(url)
       .then((response) => {
         console.log(response);
-        alert("it worked!");
       });
   }
 

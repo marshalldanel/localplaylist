@@ -50,21 +50,7 @@ class NavBar extends Component {
               role="menuitem"
               tabIndex="0"
               type="button"
-<<<<<<< HEAD
-              className="spotify-button button is primary"
-              onClick={search}
-            >test</button>
-            <button
-              type="button"
-              className="spotify-button button is primary"
-              onClick={spotifyAuth}
-            >Log in to Spotify!</button>
-            <button
-              type="button"
-              className="button is-primary"
-=======
               className="is-primary"
->>>>>>> master
               onClick={() => { this.setState({ loginModal: !this.state.loginModal, registerModal: false }); }}
             >
               Login
@@ -79,6 +65,17 @@ class NavBar extends Component {
               onClick={() => { this.setState({ registerModal: !this.state.registerModal, loginModal: false }); }}
             >
               Register
+            </a>
+          </div>
+          <div className="navbar-item">
+            <a
+              role="menuitem"
+              tabIndex="0"
+              type="button"
+              className="is-primary"
+              onClick={() => { spotifyAuth(); }}
+            >
+              Login to Spotify 
             </a>
           </div>
         </div>
