@@ -73,7 +73,8 @@ class NavBar extends Component {
               tabIndex="0"
               type="button"
               className="is-primary"
-              onClick={() => { spotifyAuth(); }}
+              href="/spotify"
+              target="popup"
             >
               Login to Spotify 
             </a>

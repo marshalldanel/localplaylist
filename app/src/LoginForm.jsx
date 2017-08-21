@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {userLogin} from './actions.js';
+import { userLogin } from './actions.js';
 
 class LoginForm extends Component {
   userInput(event) {
@@ -21,7 +21,12 @@ class LoginForm extends Component {
             <p className="modal-card-title">Login to Tripify</p>
             <button className="delete" onClick={() => { this.props.allGone(); }} />
           </header>
-          <form onSubmit={this.userInput.bind(this)}>
+          <form onSubmit={() => {
+            this.userInput.bind(this);
+            this.props.allGone();
+          }
+          }
+          >
             <section className="modal-card-body">
               <div className="field">
                 <label className="label">Email</label>

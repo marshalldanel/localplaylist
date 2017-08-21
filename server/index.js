@@ -36,7 +36,9 @@ function skipLog(req, res) {
   return false;
 }
 
-app.use(morgan('dev', { skip: skipLog }));
+app.use(morgan('dev', {
+  skip: skipLog,
+}));
 
 // Setup Knex files, include Knex logger and connect to database
 
@@ -48,18 +50,22 @@ app.use(knexLogger(knex));
 
 // Seperate route requires
 
+
 const mainRoute = require('./routes/main');
 const userRoute = require('./routes/user');
 const spotifyRoute = require('./routes/spotify');
 // This is for body parser
 const bodyParser = require('body-parser');
 
-app.use(bodyParser.json({ extended: true }));
+app.use(bodyParser.json({
+  extended: true,
+}));
 
 // Cookie logic
 
 const shortid = require('shortid');
 const cookieSession = require('cookie-session');
+const passport = require('passport');
 
 app.use(cookieSession({
   name: 'session',
@@ -73,6 +79,10 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 // Pulls static files from build folder if in production mode, otherwise will start webpack dev server and hotmodule
 
@@ -96,10 +106,15 @@ if (ENV === 'production') {
 // eg. https://stackoverflow.com/questions/28305120/differences-between-express-router-and-app-get
 
 // Mount all route files
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000/');
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000/');
+//   next();
+// });
+
+// app.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   next();
+// });
 
 app.use(mainRoute(knex));
 app.use(userRoute(knex));

@@ -152,15 +152,3 @@ export function getUserName() {
   return getState().firstname;
 }
 
-export function spotifyAuth() {
-  Api.spotifyGet('/spotify');
-  // .then((response) => {
-  //   console.log(response);
-  // });
-}
-export function spotifySearch() {
-  Api.spotifyGet('/search');
-  // .then((response) => {
-  //   console.log(response);
-  // });
-}
