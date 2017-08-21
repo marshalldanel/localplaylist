@@ -6,8 +6,12 @@ const router = express.Router();
 
 module.exports = (knex) => {
   router.post('/trip', (req, res) => {
-    const { saveTrip } = trip(knex);
-    const { savePlaylist } = playlist(knex);
+    const {
+      saveTrip
+    } = trip(knex);
+    const {
+      savePlaylist
+    } = playlist(knex);
 
     const locations = req.body.locations;
     const genres = req.body.genres;
@@ -35,9 +39,25 @@ module.exports = (knex) => {
     })[0];
 
     saveTrip(tripData).then((trip_id) => {
-      return Promise.all(playlistData.map(playlist => savePlaylist(Object.assign(playlist, { trip_id: trip_id[0] }), getQuery(playlist.city))));
+      return Promise.all(playlistData.map(playlist => savePlaylist(Object.assign(playlist, {
+        trip_id: trip_id[0]
+      }), getQuery(playlist.city))));
     }).then((concerts) => {
-      const concertData = { concerts };
+      const concertData = {
+        concerts
+      };
+      //mapping concerts to artists array in order to pass array into /searchArtistId
+      const playlistEvents = concertData.concerts[0][0].eventResponse.events.event;
+      const eventArtists = playlistEvents
+        .filter((event) => {
+          return (!!event && !!event.performers && !!event.performers.performer && !!event.performers.performer.name);
+        })
+        .map((event) => {
+          const artist = event.performers.performer.name;
+          return artist;
+        });
+      console.log(eventArtists); //we need to pass eventArtists to spotify.js
+      
       res.send(JSON.stringify(concertData));
     });
   });

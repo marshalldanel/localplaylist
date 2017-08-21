@@ -98,7 +98,6 @@ export function storeFormDataAsync() {
     })
     .then((data) => {
       // Prints out response
-
       const concerts = data.concerts.map((concert) => {
         return concert[0];
       });
