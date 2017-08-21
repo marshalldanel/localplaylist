@@ -98,7 +98,9 @@ export function storeFormDataAsync() {
       const concerts = data.concerts.map((concert) => {
         return concert[0];
       });
-      setState({ concerts });
+      setState({
+        concerts
+      });
     })
     .then(() => setView('itinerary'));
 }
@@ -125,13 +127,9 @@ export function userRegister(firstname, lastname, email, password, confirmPasswo
 
 export function userLogin(email, password) {
   Api.post('/login', {
-      email,
-      password,
-    })
-
-    // console.log()
-    // return (result);
-
+    email,
+    password,
+  })
     .then((response) => {
       return response.json();
     }).then((response) => {
@@ -152,13 +150,13 @@ export function getUserName() {
 
 export function spotifyAuth() {
   Api.spotifyGet('/spotify');
-    // .then((response) => {
-    //   console.log(response);
-    // });
+  // .then((response) => {
+  //   console.log(response);
+  // });
 }
 export function spotifySearch() {
   Api.spotifyGet('/search');
-    // .then((response) => {
-    //   console.log(response);
-    // });
+  // .then((response) => {
+  //   console.log(response);
+  // });
 }

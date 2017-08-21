@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 class Api {
   static get(url) {
     return fetch(url, {
@@ -17,17 +19,24 @@ class Api {
   }
 
   static spotifyGet(url) {
-    return fetch(url, {
-      credentials: 'include',
-      mode: 'no-cors',
-      // headers: {
-      //   'Access-Control-Allow Origin': 'https://0.0.0.0:3000',
-      // },
-    }).then(response => response.json())
+    return axios.get(url)
       .then((response) => {
         console.log(response);
+        alert("it worked!");
       });
   }
+
+  // return fetch(url, {
+  //   credentials: 'include',
+  //   mode: 'cors',
+  //   // headers: {
+  //   //   'Access-Control-Allow Origin': 'https://0.0.0.0:3000',
+  //   // },
+  // }).then(response => response.json())
+  //   .then((response) => {
+  //     console.log(response);
+  //   });
+
 
   static spotifyPost(url, data) {
     return fetch(url, {

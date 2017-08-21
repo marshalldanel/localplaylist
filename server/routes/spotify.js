@@ -11,7 +11,7 @@ const router = express.Router();
 
 const client_id = process.env.SPOTIFY_CLIENT_ID;
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
-const redirect_uri = 'https://localhost:3000/callback';
+const redirect_uri = 'https://0.0.0.0:3000/callback';
 const STATE_KEY = 'spotify_auth_state';
 // spotify api wrapper
 
@@ -20,58 +20,59 @@ module.exports = () => {
   const spotifyApi = new Spotify({
     clientId: client_id,
     clientSecret: client_secret,
-    redirectUri: 'https://localhost:3000/',
+    redirectUri: 'https://0.0.0.0:3000/callback',
     // accessToken: 'BQArbj1_iKNl9wBQArbj1_iKNl9wo9B609SA-Gkm9gIiLk_nUVd_7J1cTsI-Hzx0XSbLhuCZPazriX9t3qe2K4vI2a12TQyMionwo9B609SA-Gkm9gIiLk_nUVd_7J1cTsI-Hzx0XSbLhuCZPazriX9t3qe2K4vI2a12TQyMionw',
 
   });
-  console.log(spotifyApi);
+  // console.log(spotifyApi);
   // Request authorization
   // const state = req.session.user_cookie;
   const scopes = ['user-read-private', 'user-read-email'];
 
   router.get('/spotify', (req, res) => {
     const state = req.session.user_cookie;
-    // res.header("Acces-Control-Allow-Origin", "*");
+    // res.header("Acces-Control-Allow-Origin", "https://0.0.0.0:3000");
     res.cookie(STATE_KEY, state);
     res.redirect(spotifyApi.createAuthorizeURL(scopes, state));
+    console.log('here - spotifyAPI');
   });
 
-  router.get('/search', (req, res) => {
-    spotifyApi.searchTracks('artist:Drake')
-      .then((data) => {
-        console.log('search', data.body);
-      })
-      .catch((error) => {
-        console.log('error', error);
-      });
-  });
+  // router.get('/search', (req, res) => {
+  //   spotifyApi.searchTracks('artist:Drake')
+  //     .then((data) => {
+  //       console.log('search', data.body);
+  //     })
+  //     .catch((error) => {
+  //       console.log('error', error);
+  //     });
+  // });
 
-  router.get('/callback', (req, res) => {
-    const {
-      code,
-      state,
-    } = req.query;
-    const storedState = req.cookies ? req.cookies[STATE_KEY] : null;
-    if (state === null || state !== storedState) {
-      console.log('lol');
-    } else {
-      spotifyApi.authorizationCodeGrant(code)
-        .then((data) => {
-          const {
-            expires_in,
-            access_token,
-            refresh_token,
-          } = data.body;
-          spotifyApi.setAccessToken(access_token);
-          spotifyApi.setRefreshToken(refresh_token);
-          res.redirect('/');
-        })
-        .catch((error) => {
-          console.log('yo');
-          res.redirect('https://www.google.com');
-        });
-    }
-  });
+  //   router.get('/callback', (req, res) => {
+  //     const {
+  //       code,
+  //       state,
+  //     } = req.query;
+  //     const storedState = req.cookies ? req.cookies[STATE_KEY] : null;
+  //     if (state === null || state !== storedState) {
+  //       console.log('lol');
+  //     } else {
+  //       spotifyApi.authorizationCodeGrant(code)
+  //         .then((data) => {
+  //           const {
+  //             expires_in,
+  //             access_token,
+  //             refresh_token,
+  //           } = data.body;
+  //           spotifyApi.setAccessToken(access_token);
+  //           spotifyApi.setRefreshToken(refresh_token);
+  //           res.redirect('/');
+  //         })
+  //         .catch((error) => {
+  //           console.log('yo');
+  //           res.redirect('https://www.google.com');
+  //         });
+  //     }
+  //   });
 
   return router;
 };

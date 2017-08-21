@@ -40,6 +40,7 @@ module.exports = (knex) => {
         });
     });
   });
+  
 
   router.post('/login', (req, res) => {
     const email = req.body.email;
