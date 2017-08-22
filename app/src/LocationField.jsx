@@ -4,6 +4,7 @@ import { updateLocationField } from './actions.js';
 
 
 // We can force validations for cities via this: https://github.com/kenny-hibino/react-places-autocomplete/issues/106
+// We will need to update the eventful API to recieve geo cordinates within
 
 
 class LocationField extends Component {
@@ -33,13 +34,11 @@ class LocationField extends Component {
     };
     const myStyles = {
       root: { zIndex: 2 },
-      // autocompleteContainer: { zIndex: 2 },
-      autocompleteItem: { backgroundColour: 'white' },
-      autocompleteItemActive: { color: '#00d1b2' },
     };
     const cssClasses = {
       input: 'input',
     };
+
     return (
       <div className="location-fields">
         <div className="container">{this.state.error} </div>
@@ -48,18 +47,6 @@ class LocationField extends Component {
             <div className="field">
               <div className="control up-index">
                 <PlacesAutocomplete inputProps={inputProps} options={options} googleLogo={false} styles={myStyles} highlightFirstSuggestion classNames={cssClasses} />
-                {/* <input
-                  className="city input"
-                  type="text"
-                  placeholder="i.e. Vancouver"
-                  name="city"
-                  onChange={(event) => {
-                    this.setState({
-                      city: event.target.value,
-                      error: null,
-                    }, this.updateField);
-                  }}
-                />  */}
               </div>
             </div>
           </div>
