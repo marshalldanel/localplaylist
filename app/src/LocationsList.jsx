@@ -30,7 +30,7 @@ class LocationsList extends Component {
           </div>
         </div>
         {locations}
-        <button className="button is-primary is-outlined" onClick={() => { addLocationField(); }}>Add Another Location </button>
+        <button className="button is-primary is-outlined down-index" onClick={() => { addLocationField(); }}>Add Another Location </button>
       </div>
     );
   }
