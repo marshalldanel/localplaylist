@@ -32,17 +32,37 @@ export function userLogout() {
   });
 }
 
+export function getLocations() {
+  return getState().locations;
+}
+
 
 export function addLocationField() {
   const currentLocations = getState().locations;
+  const numLocations = currentLocations.length;
   const newLocations = currentLocations.concat([{
     city: '',
     start_date: '',
     end_date: '',
   }]);
-  setState({
-    locations: newLocations,
-  });
+
+  if (numLocations < 5) {
+    setState({
+      locations: newLocations,
+    });
+  }
+}
+
+export function removeLocationField() {
+  const currentLocations = getState().locations;
+  const numLocations = currentLocations.length;
+  currentLocations.pop();
+
+  if (numLocations > 1) {
+    setState({
+      locations: currentLocations,
+    });
+  }
 }
 
 export function updateLocationField(index, city, start_date, end_date) {
@@ -135,7 +155,7 @@ export function userLogin(email, password) {
   }).then((response) => {
     console.log(response);
     return response.json();
-    //here we should get the user's first name in the response (resonse.body.firstname)
-    //such that we can get the username to display in nav
+    // here we should get the user's first name in the response (resonse.body.firstname)
+    // such that we can get the username to display in nav
   });
 }
