@@ -46,6 +46,15 @@ const config = {
           loader: 'sass-loader',
         }],
       },
+<<<<<<< HEAD
+=======
+      {
+        test: /.(png|jpg|gif)$/,
+        use: [{
+          loader: 'file-loader',
+          options: {} }],
+      },
+>>>>>>> 4fdaa97e03fd6d0e4d0642f5a04f3cf0c8ac6b3f
     ],
   },
   plugins: [

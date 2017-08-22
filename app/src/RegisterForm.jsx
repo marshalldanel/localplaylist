@@ -98,7 +98,7 @@ class RegisterForm extends Component {
               </div>
             </section>
             <footer className="modal-card-foot">
-              <button className="button is-success">Register!</button>
+              <button className="button is-success" value="submit" type="submit">Register!</button>
               <a className="button" onClick={() => { this.props.allGone(); }}>Cancel</a>
             </footer>
           </form>
