@@ -23,7 +23,10 @@ const config = {
     rules: [
       // https://webpack.js.org/loaders/babel-loader/
       {
-        test: /\.jsx?$/,
+        test: /\.(js|jsx)?$/,
+        include: [
+          path.resolve(__dirname, 'app'),
+        ],
         use: {
           loader: 'babel-loader',
           options: {

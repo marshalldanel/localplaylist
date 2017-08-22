@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { addLocationField } from './actions.js';
 import LocationField from './LocationField.jsx';
 
 
 class LocationsList extends Component {
   render() {
+
+    // Passes in empty location data to render form input fields
     const locations = this.props.locations.map((location, index) => {
       return (
         <LocationField
@@ -18,19 +19,8 @@ class LocationsList extends Component {
     return (
       <div className="locationsContainer container">
         <h2 className="subtitle has-text-centered is-size-2">Where are you travelling to?</h2>
-        <div className="columns">
-          <div className="column">
-            City
-          </div>
-          <div className="column">
-            Arrival Date
-          </div>
-          <div className="column">
-            Departure Date
-          </div>
-        </div>
+        {/* Render location input fields */}
         {locations}
-        <button className="button is-primary is-outlined down-index" onClick={() => { addLocationField(); }}>Add Another Location </button>
       </div>
     );
   }
