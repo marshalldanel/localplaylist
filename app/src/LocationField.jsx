@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { updateLocationField } from './actions.js';
+import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
 
 
 class LocationField extends Component {
