@@ -33,7 +33,28 @@ module.exports = () => {
       console.log('something went wrong :( >>> ', err);
     });
 
-    
+  function getArtistIds(artistsLists) {
+    artistsLists.forEach((artistList) => {
+      return Promise.all(artistList.map((artist) => {
+        spotifyApi.searchArtists(artist)
+          .then((data) => {
+            console.log('Your artist and their id is:', data.body);
+          }, (err) => {
+            console.log(err);
+          })
+      }));
+    });
+  }
+
+  console.log(getArtistIds([['Lady Gaga', 'Katy Perry', 'The Neighbourhood'],['Michael Jackson', 'Prince', 'Elvis Presley']]));
+  //     )
+  //   )).then(tracksList => {
+  //     console.log('tracksList', tracksList);
+  //   })
+  // })
+  // .then(tracksLists => 
+  //   console.log('tracksssssListsssss', tracksLists)
+  // }
 
 
 
@@ -56,16 +77,16 @@ module.exports = () => {
 
   //spotify authorization - this only happens when a user want to login
   passport.use(new SpotifyStrategy({
-      clientID: client_id,
-      clientSecret: client_secret,
-      callbackURL: redirect_uri,
-    },
-    (accessToken, refreshToken, profile, done) => {
-      ACCESS_TOKEN = accessToken;
-      REFRESH_TOKEN = refreshToken;
-      console.log("access token: ", ACCESS_TOKEN);
-      console.log("refresh token: ", REFRESH_TOKEN);
-    }));
+    clientID: client_id,
+    clientSecret: client_secret,
+    callbackURL: redirect_uri,
+  },
+  (accessToken, refreshToken, profile, done) => {
+    ACCESS_TOKEN = accessToken;
+    REFRESH_TOKEN = refreshToken;
+    console.log("access token: ", ACCESS_TOKEN);
+    console.log("refresh token: ", REFRESH_TOKEN);
+  }));
 
   router.get('/spotify-userAuth',
     passport.authenticate('spotify'),
@@ -73,7 +94,7 @@ module.exports = () => {
 
   router.get('/callback',
     passport.authenticate('spotify', {
-      failureRedirect: '/'
+      failureRedirect: '/',
     }),
     (req, res) => {
       console.log('success i guess');

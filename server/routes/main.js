@@ -4,13 +4,24 @@ const playlist = require('./playlist.js');
 
 const router = express.Router();
 
+function createEventArtists([playlist]) {
+  if (!playlist || !playlist.eventResponse || !playlist.eventResponse.events) {
+    return [];
+  }
+  return playlist.eventResponse.events.event.filter((event) => {
+    return (event && event.performers && event.performers.performer && event.performers.performer.name);
+  })
+    .map(event => event.performers.performer.name);
+}
+
+
 module.exports = (knex) => {
   router.post('/trip', (req, res) => {
     const {
-      saveTrip
+      saveTrip,
     } = trip(knex);
     const {
-      savePlaylist
+      savePlaylist,
     } = playlist(knex);
 
     const locations = req.body.locations;
@@ -40,25 +51,14 @@ module.exports = (knex) => {
 
     saveTrip(tripData).then((trip_id) => {
       return Promise.all(playlistData.map(playlist => savePlaylist(Object.assign(playlist, {
-        trip_id: trip_id[0]
+        trip_id: trip_id[0],
       }), getQuery(playlist.city))));
     }).then((concerts) => {
-      const concertData = {
-        concerts
-      };
-      //mapping concerts to artists array in order to pass array into /searchArtistId
-      const playlistEvents = concertData.concerts[0][0].eventResponse.events.event;
-      const eventArtists = playlistEvents
-        .filter((event) => {
-          return (!!event && !!event.performers && !!event.performers.performer && !!event.performers.performer.name);
-        })
-        .map((event) => {
-          const artist = event.performers.performer.name;
-          return artist;
-        });
-      console.log(eventArtists); //we need to pass eventArtists to spotify.js
-      
-      res.send(JSON.stringify(concertData));
+      const artistLists = concerts.map(createEventArtists);
+      //pass artistLists to spotifyjs OR make a function in spotifyjs that takes in an array of artists and returns an array of those artists ids
+      console.log('artistsLists', artistLists);
+
+      res.json(concerts);
     });
   });
 
