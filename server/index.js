@@ -102,32 +102,14 @@ if (ENV === 'production') {
   app.use(hotmodule(compiler));
 }
 
-// If we want to make modules of the routes, then we will 'require' them, and use express.Router(); in those files
+// If we want to make modules of the routes, 'require' them, use express.Router(); in those files
 // eg. https://stackoverflow.com/questions/28305120/differences-between-express-router-and-app-get
 
 // Mount all route files
-// app.use((req, res, next) => {
-//   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000/');
-//   next();
-// });
-
-// app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   next();
-// });
 
 app.use(mainRoute(knex));
 app.use(userRoute(knex));
-
-
 app.use(spotifyRoute());
-
-
-// Below is an example API route:
-
-// app.get('/api', function (req, res) {
-//   res.send('This is how our API will work!');
-// });
 
 // Starts the server
 
