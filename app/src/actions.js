@@ -26,6 +26,12 @@ export function userInfo() {
   return getState().user;
 }
 
+export function userLogout() {
+  setState({
+    user: null,
+  });
+}
+
 
 export function addLocationField() {
   const currentLocations = getState().locations;
@@ -124,6 +130,7 @@ export function userRegister(firstname, lastname, email, password, confirmPasswo
     confirmPassword,
     loggedIn: true,
   }).then((response) => {
+    console.log(response.json());
     return response.json();
   });
 }
