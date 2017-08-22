@@ -1,3 +1,5 @@
+const { getArtistTracks } = require('./spotifyHelpers');
+
 const express = require('express');
 const trip = require('./trip.js');
 const playlist = require('./playlist.js');
@@ -49,17 +51,22 @@ module.exports = (knex) => {
       return _location;
     })[0];
 
-    saveTrip(tripData).then((trip_id) => {
-      return Promise.all(playlistData.map(playlist => savePlaylist(Object.assign(playlist, {
-        trip_id: trip_id[0],
-      }), getQuery(playlist.city))));
-    }).then((concerts) => {
-      const artistLists = concerts.map(createEventArtists);
-      //pass artistLists to spotifyjs OR make a function in spotifyjs that takes in an array of artists and returns an array of those artists ids
-      console.log('artistsLists', artistLists);
+    saveTrip(tripData)
+      .then((trip_id) => {
+        return Promise.all(playlistData.map(playlist => savePlaylist(Object.assign(playlist, {
+          trip_id: trip_id[0],
+        }), getQuery(playlist.city))));
+      })
+      .then((concerts) => {
+        const artistLists = concerts.map(createEventArtists);
+        const playlists = getArtistTracks(artistLists);
 
-      res.json(concerts);
-    });
+        return Promise.all([playlists, concerts])
+          .then(([concerts, playlists]) => {
+            const musicData = { concerts, playlists };
+            res.json(musicData);
+          });
+      });
   });
 
   return router;
