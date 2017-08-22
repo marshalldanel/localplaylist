@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import PlacesAutocomplete from 'react-places-autocomplete';
 import { updateLocationField } from './actions.js';
+
+
+// We can force validations for cities via this: https://github.com/kenny-hibino/react-places-autocomplete/issues/106
 
 
 class LocationField extends Component {
@@ -28,14 +31,23 @@ class LocationField extends Component {
       value: this.state.city,
       onChange: this.onChange,
     };
+    const myStyles = {
+      root: { zIndex: 2 },
+      // autocompleteContainer: { zIndex: 2 },
+      autocompleteItem: { backgroundColour: 'white' },
+      autocompleteItemActive: { color: '#00d1b2' },
+    };
+    const cssClasses = {
+      input: 'input',
+    };
     return (
       <div className="location-fields">
         <div className="container">{this.state.error} </div>
         <div className="columns">
           <div className="column">
             <div className="field">
-              <div className="control">
-                <PlacesAutocomplete inputProps={inputProps} options={options} googleLogo={false} highlightFirstSuggestion />
+              <div className="control up-index">
+                <PlacesAutocomplete inputProps={inputProps} options={options} googleLogo={false} styles={myStyles} highlightFirstSuggestion classNames={cssClasses} />
                 {/* <input
                   className="city input"
                   type="text"
@@ -47,7 +59,7 @@ class LocationField extends Component {
                       error: null,
                     }, this.updateField);
                   }}
-                /> */}
+                />  */}
               </div>
             </div>
           </div>
