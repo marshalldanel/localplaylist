@@ -8,13 +8,13 @@ const ENV = process.env.NODE_ENV || 'development';
 const config = {
   entry: {
     app: [
-      path.resolve(__dirname, 'app/src/index.jsx')
-    ]
+      path.resolve(__dirname, 'app/src/index.jsx'),
+    ],
   },
   // https://webpack.js.org/configuration/output/
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'js/[name]-bundle-generated.js'
+    filename: 'js/[name]-bundle-generated.js',
   },
   // https://webpack.js.org/configuration/devtool/#devtool
   devtool: ENV === 'production' ? 'cheap-source-map' : 'eval-source-map',
@@ -27,23 +27,29 @@ const config = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ["es2015", "stage-0", "react"],
-            ignore: '/node_modules/'
-          }
-        }
+            presets: ['es2015', 'stage-0', 'react'],
+            ignore: '/node_modules/',
+          },
+        },
       },
       // https://webpack.js.org/loaders/sass-loader/
       {
         test: /\.scss$/,
         use: [{
-          loader: 'style-loader'
+          loader: 'style-loader',
         }, {
-          loader: 'css-loader'
+          loader: 'css-loader',
         }, {
-          loader: 'sass-loader'
-        }]
-      }
-    ]
+          loader: 'sass-loader',
+        }],
+      },
+      {
+        test: /.(png|jpg|gif)$/,
+        use: [{
+          loader: 'file-loader',
+          options: {} }],
+      },
+    ],
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -51,15 +57,15 @@ const config = {
     new HTMLWebpackPlugin({
       filename: 'index.html',
       template: path.resolve(__dirname, 'app/index.html'),
-      inject: true
-    })
-  ]
+      inject: true,
+    }),
+  ],
 };
 
-if(ENV === 'development') {
+if (ENV === 'development') {
   config.entry.app.unshift('webpack-hot-middleware/client');
 }
 
 module.exports = config;
 
-//copy webpack plugin
+// copy webpack plugin

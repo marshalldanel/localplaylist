@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import LoginForm from './LoginForm.jsx';
 import RegisterForm from './RegisterForm.jsx';
-import { spotifyAuth, search, userInfo } from './actions.js';
-
+import { userInfo, userLogout } from './actions.js';
 
 
 class NavBar extends Component {
@@ -20,25 +19,25 @@ class NavBar extends Component {
   }
 
   render() {
-    const userName = userInfo();
+    const user = userInfo();
+    const userName = user ? user.firstname : null;
     let navBarEnd;
 
     if (userName) {
       navBarEnd = (<div className="navbar-end">
         <div className="navbar-item">
-         <small>Hi {userName}</small>
+          <small>Hi {userName}</small>
         </div>
         <div className="navbar-item">
-          {/*This needs to be set up!  */}
-           {/* <a
+          <a
             role="menuitem"
             tabIndex="0"
             type="button"
             className="is-primary"
-            onClick={() => { this.setState({ registerModal: !this.state.registerModal, loginModal: false }); }}
-          > */}
-              Logout 
-          {/* </a>  */} 
+            onClick={() => { userLogout(); }}
+          >
+              Logout
+          </a>
         </div>
       </div>
       );
