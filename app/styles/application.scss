@@ -1,4 +1,8 @@
-// This is the top-level scss file. Import all other files in here in order of precidence (more important = last)
+// This is the top-level scss file. Import all other files in here in order of precidence (last is most important, set variables before loading)
+
 @import '../../node_modules/bulma/bulma.sass';
-@import '../../node_modules/react-dates/lib/css/_datepicker.css';
+$react-dates-color-primary: $primary;
+$react-dates-color-secondary: $primary;
+@import '~react-dates/css/variables.scss';
+@import '~react-dates/css/styles.scss';
 @import 'main';

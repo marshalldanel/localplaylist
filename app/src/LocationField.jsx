@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 import PlacesAutocomplete from 'react-places-autocomplete';
 import { updateLocationField } from './actions.js';
 import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
@@ -22,7 +23,7 @@ class LocationField extends Component {
   }
 
   updateField() {
-    updateLocationField(this.props.index, this.state.city, this.state.start_date, this.state.end_date);
+    updateLocationField(this.props.index, this.state.city, moment(this.state.startDate).format('YYYYMMDD'), moment(this.state.endDate).format('YYYYMMDD'));
   }
 
   render() {
@@ -32,18 +33,20 @@ class LocationField extends Component {
     const inputProps = {
       value: this.state.city,
       onChange: this.onChange,
+      placeholder: 'Destination...',
     };
     const myStyles = {
       root: { zIndex: 2 },
     };
     const cssClasses = {
-      input: 'input',
+      input: 'form-text-field input',
     };
 
     return (
       <div className="location-fields">
         <div className="container">{this.state.error} </div>
         <div className="columns">
+          <div className="column is-3" />
           <div className="column">
             <div className="field">
               <div className="control up-index">
@@ -54,7 +57,18 @@ class LocationField extends Component {
           <div className="column">
             <div className="field">
               <div className="control">
-                <input
+                <DateRangePicker
+                  startDate={this.state.startDate} // momentPropTypes.momentObj or null,
+                  endDate={this.state.endDate} // momentPropTypes.momentObj or null,
+                  onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate }, this.updateField)} // PropTypes.func.isRequired,
+                  focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+                  onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
+                  showDefaultInputIcon
+                  required
+                  startDatePlaceholderText={'Arriving'}
+                  endDatePlaceholderText={'Departing'}
+                />
+                {/* <input
                   className="date input"
                   type="date"
                   placeholder="dd/mm/yyyy"
@@ -65,28 +79,12 @@ class LocationField extends Component {
                       error: null,
                     }, this.updateField);
                   }}
-                />
+                /> */}
               </div>
             </div>
           </div>
-          <div className="column">
-            <div className="field">
-              <div className="control">
-                <input
-                  className="date input"
-                  type="date"
-                  placeholder="dd/mm/yyyy"
-                  name="end_date"
-                  onChange={(event) => {
-                    this.setState({
-                      end_date: event.target.value.split('-').join(''),
-                      error: null,
-                    }, this.updateField);
-                  }}
-                />
-              </div>
-            </div>
-          </div>
+                    <div className="column is-2" />
+        
         </div>
       </div>
     );

@@ -1,4 +1,38 @@
 
+.input {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    align-items: center;
+    border: 1px solid #cacccd;
+    border-radius: 0px; 
+    box-shadow: none;
+    display: inline-flex;
+    justify-content: flex-start;
+    padding-bottom: calc(0.375em - 1px);
+    padding-left: calc(0.625em - 1px);
+    padding-right: calc(0.625em - 1px);
+    padding-top: calc(0.375em - 1px);
+    position: relative;
+    background-color: white;
+    max-width: 100%;
+    width: 100%;
+    font-weight: 200;
+    font-size: 18px;
+    line-height: 24px;
+    color: #757575;
+    margin: 0;
+    height: 48px;
+    vertical-align: middle;
+}
+
+.DateRangePickerInput:hover {
+    border-color: #b5b5b5;
+}
+
+.DateRangePickerInput:active {
+    border-color: #00d1b2;
+}
+
 .logo-text {
   color: $primary;
   font-size: 2em;
@@ -26,6 +60,11 @@
 
 .index-is-2 {
   z-index: 2;
+}
+
+.form-text-field {
+  border: 1px solid #cacccd;
+  border-radius: 0;
 }
 
 }
