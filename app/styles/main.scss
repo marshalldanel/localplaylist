@@ -25,6 +25,20 @@
     vertical-align: middle;
 }
 
+.DateInput__display-text {
+  text-align: center;
+}
+
+.DateRangePickerInput {
+    width: 100%;
+    min-width: 350px;
+}
+
+.locationButtons {
+  height: 50px;
+  border-radius: 0px
+}
+
 .DateRangePickerInput:hover {
     border-color: #b5b5b5;
 }

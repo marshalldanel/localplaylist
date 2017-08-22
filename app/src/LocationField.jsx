@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import PlacesAutocomplete from 'react-places-autocomplete';
-import { updateLocationField } from './actions.js';
+import { updateLocationField, getLocations, addLocationField, removeLocationField } from './actions.js';
 import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'react-dates';
 
 
 // We can force validations for cities via this: https://github.com/kenny-hibino/react-places-autocomplete/issues/106
-// We will need to update the eventful API to recieve geo cordinates within
+// We may need to update the eventful API to receive geo cordinates within. It will make results more accurate
+// TODO: Something is wrong with how the city state is updated. Check out when the city state is updated. It should be 'onChange'
 
 
 class LocationField extends Component {
@@ -19,73 +20,103 @@ class LocationField extends Component {
       end_date: '',
       error: null,
     };
+
+    // Allows autocomplete to do lookup with Google
     this.onChange = city => this.setState({ city });
   }
+
+  // Changes global state when any of these change in actions
+  // Moment converts dateformat to something eventful can use.
 
   updateField() {
     updateLocationField(this.props.index, this.state.city, moment(this.state.startDate).format('YYYYMMDD'), moment(this.state.endDate).format('YYYYMMDD'));
   }
 
   render() {
+    // Options to configure Autocomplete Cities container. https://github.com/kenny-hibino/react-places-autocomplete
+
     const options = {
-      types: ['(cities)'],
+      types: ['(cities)'], // Only render cities in autocomplete. 
     };
     const inputProps = {
-      value: this.state.city,
+      value: this.state.city, // Required props to make this work.
       onChange: this.onChange,
       placeholder: 'Destination...',
     };
     const myStyles = {
-      // root: { zIndex: 1 },
-      autocompleteContainer: { zIndex: 2 },
+      autocompleteContainer: { zIndex: 2 }, // Set to 2 so it renders above everything else
     };
     const cssClasses = {
       input: 'form-text-field input',
     };
 
+    // Conditionally render add/remove location buttons 
+
+    let buttons = null;
+    if (this.props.index === (getLocations().length) - 1) {
+      buttons = (
+        <div>
+          <button className="button is-primary is-outlined has-text-centered locationButtons" onClick={() => { addLocationField(); }}>
+            <div className="icon">
+              <i className="fa fa-plus" />
+            </div>
+          </button>
+          <button className="button is-primary is-outlined has-text-centered locationButtons" onClick={() => { removeLocationField(); }}>
+            <div className="icon">
+              <i className="fa fa-minus" />
+            </div>
+          </button>
+        </div>
+      );
+    }
+
+    // Render this...
+
     return (
+
       <div className="location-fields">
         <div className="container">{this.state.error} </div>
         <div className="columns">
-          <div className="column is-3" />
-          <div className="column">
-            <div className="field">
-              <div className="control up-index">
-                <PlacesAutocomplete inputProps={inputProps} options={options} googleLogo={false} styles={myStyles} highlightFirstSuggestion classNames={cssClasses} />
-              </div>
-            </div>
-          </div>
-          <div className="column">
+          <div className="column" />
+          <div className="column is-4">
             <div className="field">
               <div className="control">
-                <DateRangePicker
-                  startDate={this.state.startDate} // momentPropTypes.momentObj or null,
-                  endDate={this.state.endDate} // momentPropTypes.momentObj or null,
-                  onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate }, this.updateField)} // PropTypes.func.isRequired,
-                  focusedInput={this.state.focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-                  onFocusChange={focusedInput => this.setState({ focusedInput })} // PropTypes.func.isRequired,
-                  showDefaultInputIcon
-                  required
-                  startDatePlaceholderText={'Arriving'}
-                  endDatePlaceholderText={'Departing'}
+
+                {/* Render cities autocomplete - https://github.com/kenny-hibino/react-places-autocomplete */}
+
+                <PlacesAutocomplete
+                  inputProps={inputProps}
+                  options={options}
+                  googleLogo={false}
+                  styles={myStyles}
+                  highlightFirstSuggestion
+                  classNames={cssClasses}
                 />
-                {/* <input
-                  className="date input"
-                  type="date"
-                  placeholder="dd/mm/yyyy"
-                  name="start_date"
-                  onChange={(event) => {
-                    this.setState({
-                      start_date: event.target.value.split('-').join(''),
-                      error: null,
-                    }, this.updateField);
-                  }}
-                /> */}
               </div>
             </div>
           </div>
-                    <div className="column is-2" />
-        
+          <div className="column">
+
+            {/* Render datepicker - https://github.com/airbnb/react-dates */}
+
+            <DateRangePicker
+              startDate={this.state.startDate}
+              endDate={this.state.endDate}
+              onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate }, this.updateField)}
+              focusedInput={this.state.focusedInput}
+              onFocusChange={focusedInput => this.setState({ focusedInput })}
+              showDefaultInputIcon // Shows calendar icon
+              required // Is required
+              startDatePlaceholderText={'Arriving'} // Placeholder text
+              endDatePlaceholderText={'Departing'}
+            />
+          </div>
+          <div className="column" >
+
+            {/* Render Buttons */}
+
+            {buttons}
+          </div>
         </div>
       </div>
     );

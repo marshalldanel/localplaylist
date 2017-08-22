@@ -32,6 +32,10 @@ export function userLogout() {
   });
 }
 
+export function getLocations() {
+  return getState().locations;
+}
+
 
 export function addLocationField() {
   const currentLocations = getState().locations;
