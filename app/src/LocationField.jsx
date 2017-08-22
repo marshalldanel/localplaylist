@@ -36,7 +36,8 @@ class LocationField extends Component {
       placeholder: 'Destination...',
     };
     const myStyles = {
-      root: { zIndex: 2 },
+      // root: { zIndex: 1 },
+      autocompleteContainer: { zIndex: 2 },
     };
     const cssClasses = {
       input: 'form-text-field input',
