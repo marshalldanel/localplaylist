@@ -31,6 +31,12 @@ module.exports = () => {
       console.log("our spotify info is: ", spotifyApi);
     }, (err) => {
       console.log('something went wrong :( >>> ', err);
+    })
+    .then(() => {
+      console.log(getArtistIds([
+        ['Lady Gaga', 'Katy Perry', 'The Neighbourhood'],
+        ['Michael Jackson', 'Prince', 'Elvis Presley']
+      ]));
     });
 
   function getArtistIds(artistsLists) {
@@ -41,12 +47,17 @@ module.exports = () => {
             console.log('Your artist and their id is:', data.body);
           }, (err) => {
             console.log(err);
-          })
+          });
+        return artistList;
       }));
     });
+    return artistsLists;
   }
 
-  console.log(getArtistIds([['Lady Gaga', 'Katy Perry', 'The Neighbourhood'],['Michael Jackson', 'Prince', 'Elvis Presley']]));
+  // console.log(getArtistIds([
+  //   ['Lady Gaga', 'Katy Perry', 'The Neighbourhood'],
+  //   ['Michael Jackson', 'Prince', 'Elvis Presley']
+  // ]));
   //     )
   //   )).then(tracksList => {
   //     console.log('tracksList', tracksList);
@@ -77,16 +88,16 @@ module.exports = () => {
 
   //spotify authorization - this only happens when a user want to login
   passport.use(new SpotifyStrategy({
-    clientID: client_id,
-    clientSecret: client_secret,
-    callbackURL: redirect_uri,
-  },
-  (accessToken, refreshToken, profile, done) => {
-    ACCESS_TOKEN = accessToken;
-    REFRESH_TOKEN = refreshToken;
-    console.log("access token: ", ACCESS_TOKEN);
-    console.log("refresh token: ", REFRESH_TOKEN);
-  }));
+      clientID: client_id,
+      clientSecret: client_secret,
+      callbackURL: redirect_uri,
+    },
+    (accessToken, refreshToken, profile, done) => {
+      ACCESS_TOKEN = accessToken;
+      REFRESH_TOKEN = refreshToken;
+      console.log("access token: ", ACCESS_TOKEN);
+      console.log("refresh token: ", REFRESH_TOKEN);
+    }));
 
   router.get('/spotify-userAuth',
     passport.authenticate('spotify'),
