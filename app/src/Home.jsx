@@ -11,7 +11,7 @@ class Home extends Component {
 
     if (view === 'locations' || view === 'genres') {
       return (
-        <div>
+        <div className="section is-large">
           <QuestionsContainer
             view={this.props.view}
             locations={this.props.locations}
