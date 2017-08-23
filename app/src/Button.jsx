@@ -1,14 +1,31 @@
 import React, { Component } from 'react';
-import { setView, storeFormDataAsync } from './actions.js';
+import { setView, storeFormDataAsync, getLocations } from './actions.js';
 
 class Button extends Component {
   render() {
     let isButton;
 
+    let buttonDisabled = false;
+    let err = null;
+    const locations = getLocations();
+
+    locations.forEach((location) => {
+      console.log(location);
+      if (location.city === '') {
+        err = 'There is an empty location! Add a city name or remove the city';
+        buttonDisabled = true;
+      }
+      if (location.start_date === location.end_date) {
+        err = 'Please select a date range of at least two days';
+        buttonDisabled = true;
+      }
+    });
+
+
     if (this.props.view === 'locations') {
-      isButton = <a className="button is-primary is-centred fixed-width-100" onClick={() => { setView('genres'); }}><span>Select Genres</span></a>;
+      isButton = <button className="button is-primary is-centred fixed-width-100" disabled={buttonDisabled} onClick={() => { setView('genres'); }}><span>Select Genres</span></button>;
     } else if (this.props.view === 'genres') {
-      isButton = <a className="button is-primary is-centred fixed-width-100" onClick={() => { storeFormDataAsync(); }}><span>See your trip!</span></a>;
+      isButton = <button className="button is-primary is-centred fixed-width-100" disabled={buttonDisabled} onClick={() => { storeFormDataAsync(); }}><span>See your trip!</span></button>;
     } else {
       isButton = <div />;
     }

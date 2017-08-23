@@ -11,8 +11,8 @@ import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'rea
 
 
 class LocationField extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       city: '',
@@ -20,9 +20,6 @@ class LocationField extends Component {
       end_date: '',
       error: null,
     };
-
-    // Allows autocomplete to do lookup with Google
-    this.onChange = city => this.setState({ city });
   }
 
   // Changes global state when any of these change in actions
@@ -40,7 +37,7 @@ class LocationField extends Component {
     };
     const inputProps = {
       value: this.state.city, // Required props to make this work.
-      onChange: this.onChange,
+      onChange: city => this.setState({ city }, this.updateField),
       placeholder: 'Destination...',
     };
     const myStyles = {
@@ -51,12 +48,17 @@ class LocationField extends Component {
     };
 
     // Conditionally render add/remove location buttons 
-
+    const index = this.props.index;
+    const location = getLocations()[index];
     let buttons = null;
+    let buttonsDisabled = false;
+    if (getLocations()[index].city === '') {
+      buttonsDisabled = true;
+    }
     if (this.props.index === (getLocations().length) - 1) {
       buttons = (
         <div>
-          <button className="button is-primary is-outlined has-text-centered locationButtons" onClick={() => { addLocationField(); }}>
+          <button className="button is-primary is-outlined has-text-centered locationButtons" disabled={buttonsDisabled} onClick={() => { addLocationField(); }}>
             <div className="icon">
               <i className="fa fa-plus" />
             </div>
@@ -104,7 +106,7 @@ class LocationField extends Component {
               endDate={this.state.endDate}
               onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate }, this.updateField)}
               focusedInput={this.state.focusedInput}
-              onFocusChange={focusedInput => this.setState({ focusedInput })}
+              onFocusChange={focusedInput => this.setState({ focusedInput }, this.updateField)}
               showDefaultInputIcon // Shows calendar icon
               required // Is required
               startDatePlaceholderText={'Arriving'} // Placeholder text
