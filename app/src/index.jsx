@@ -21,7 +21,7 @@ setState({
   user: null,
   locations: [{ city: '', start_date: '', end_date: '' }],
   genres: [],
-  concerts: concertData,
+  concerts: [],
   concerts_view_index: 0,
   songs: [],
 });
