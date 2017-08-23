@@ -20,7 +20,7 @@ class QuestionsContainer extends Component {
     }
 
     return (
-      <section className="section is-medium">
+      <section className="section">
         {currentView}
       </section>
     );
