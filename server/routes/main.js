@@ -61,9 +61,9 @@ module.exports = (knex) => {
         const artistLists = concerts.map(createEventArtists);
         const playlists = getArtistTracks(artistLists);
 
-        return Promise.all([playlists, concerts])
+        return Promise.all([concerts, playlists])
           .then(([concerts, playlists]) => {
-            const musicData = { concerts, playlists };
+            const musicData = { playlists, concerts };
             res.json(musicData);
           });
       });
