@@ -20,9 +20,6 @@ class LocationField extends Component {
       end_date: '',
       error: null,
     };
-
-    // Allows autocomplete to do lookup with Google
-    this.onChange = city => this.setState({ city }, this.updateField);
   }
 
   // Changes global state when any of these change in actions
@@ -40,7 +37,7 @@ class LocationField extends Component {
     };
     const inputProps = {
       value: this.state.city, // Required props to make this work.
-      onChange: this.onChange,
+      onChange: city => this.setState({ city }, this.updateField),
       placeholder: 'Destination...',
     };
     const myStyles = {
@@ -104,7 +101,7 @@ class LocationField extends Component {
               endDate={this.state.endDate}
               onDatesChange={({ startDate, endDate }) => this.setState({ startDate, endDate }, this.updateField)}
               focusedInput={this.state.focusedInput}
-              onFocusChange={focusedInput => this.setState({ focusedInput })}
+              onFocusChange={focusedInput => this.setState({ focusedInput }, this.updateField)}
               showDefaultInputIcon // Shows calendar icon
               required // Is required
               startDatePlaceholderText={'Arriving'} // Placeholder text
