@@ -123,9 +123,8 @@ export function storeFormDataAsync() {
       return response.json();
     })
     .then((data) => {
-      // Prints out response
-      const concerts = data.concerts.map((concert) => {
-        return concert[0];
+      const concerts = data.map((city) => {
+        return city;
       });
       setState({
         concerts,
