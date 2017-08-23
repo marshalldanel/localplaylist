@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 import LoginForm from './LoginForm.jsx';
 import RegisterForm from './RegisterForm.jsx';
-<<<<<<< HEAD
-import { spotifyAuth, search, userInfo } from './actions.js';
-
-=======
 import { userInfo, userLogout } from './actions.js';
->>>>>>> master
 
 
 class NavBar extends Component {
@@ -80,7 +75,7 @@ class NavBar extends Component {
               href="/spotify-userAuth"
               target="popup"
             >
-              Login to Spotify 
+              Login to Spotify
             </a>
           </div>
         </div>

@@ -116,9 +116,9 @@ export function updateConcertIndex(number, totalEvents) {
 
 export function storeFormDataAsync() {
   Api.post('/trip', {
-      locations: getState().locations,
-      genres: getState().genres,
-    })
+    locations: getState().locations,
+    genres: getState().genres,
+  })
     .then((response) => {
       return response.json();
     })
@@ -128,7 +128,7 @@ export function storeFormDataAsync() {
         return concert[0];
       });
       setState({
-        concerts
+        concerts,
       });
     })
     .then(() => setView('itinerary'));
@@ -157,23 +157,6 @@ export function userRegister(firstname, lastname, email, password, confirmPasswo
 
 export function userLogin(email, password) {
   Api.post('/login', {
-<<<<<<< HEAD
-    email,
-    password,
-  })
-    .then((response) => {
-      return response.json();
-    }).then((response) => {
-      if (response !== 'error') {
-        setState({
-          user: {
-            firstname: response,
-            loggedIn: true,
-          },
-        });
-      }
-    });
-=======
     email, password,
   }).then((response) => {
     console.log(response);
@@ -181,7 +164,6 @@ export function userLogin(email, password) {
     // here we should get the user's first name in the response (resonse.body.firstname)
     // such that we can get the username to display in nav
   });
->>>>>>> master
 }
 
 export function getUserName() {
