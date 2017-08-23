@@ -25,6 +25,11 @@
     vertical-align: middle;
 }
 
+.modal-background {
+  background-color: $primary;
+  opacity: 0.8 ;
+}
+
 .min-width {
   min-width: 350px;
 }

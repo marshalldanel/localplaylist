@@ -115,6 +115,9 @@ export function updateConcertIndex(number, totalEvents) {
 // export function 
 
 export function storeFormDataAsync() {
+  setState({
+    loading: true,
+  });
   Api.post('/trip', {
     locations: getState().locations,
     genres: getState().genres,
@@ -129,6 +132,7 @@ export function storeFormDataAsync() {
       });
       setState({
         concerts,
+        loading: false,
       });
     })
     .then(() => setView('itinerary'));

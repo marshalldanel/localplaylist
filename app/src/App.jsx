@@ -6,8 +6,24 @@ import Home from './Home.jsx';
 // THIS WILL NEVER CONTAIN THIS.STATE ANYWHERE - 
 class App extends Component {
   render() {
+    let loading = '';
+    console.log(this.props.loading);
+
+    if (this.props.loading === true) {
+      loading = (
+        <div className="modal is-active animated infinite fadeIn">
+          <div className="modal-background" />
+          <div className="modal-content">
+            <h1>Loading</h1>
+          </div>
+          {/* <button className="modal-close is-large" aria-label="close" /> */}
+        </div>
+      );
+    }
+
     return (
       <div className="main-container">
+        {loading}
         <NavBar />
         <Home
           view={this.props.view}
