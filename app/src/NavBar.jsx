@@ -75,7 +75,7 @@ class NavBar extends Component {
               href="/spotify-userAuth"
               target="popup"
             >
-              Login to Spotify
+              Connect Spotify
             </a>
           </div>
         </div>
