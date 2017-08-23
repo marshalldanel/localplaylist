@@ -65,6 +65,21 @@ export function removeLocationField() {
   }
 }
 
+export function deleteLocationField(index) {
+  console.log(index);
+  const currentLocations = getState().locations;
+  console.log(currentLocations);
+  const numLocations = currentLocations.length;
+  currentLocations.splice(index, 1);
+  console.log(currentLocations);
+
+  if (numLocations > 1) {
+    setState({
+      locations: currentLocations,
+    });
+  }
+}
+
 export function updateLocationField(index, city, start_date, end_date) {
   const currentLocations = getState().locations;
   setState({
