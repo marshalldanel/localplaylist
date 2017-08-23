@@ -24,6 +24,7 @@ setState({
   concerts: [],
   concerts_view_index: 0,
   songs: [],
+  loading: false,
 });
 
 
