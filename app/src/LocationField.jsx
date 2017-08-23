@@ -48,12 +48,17 @@ class LocationField extends Component {
     };
 
     // Conditionally render add/remove location buttons 
-
+    const index = this.props.index;
+    const location = getLocations()[index];
     let buttons = null;
+    let buttonsDisabled = false;
+    if (getLocations()[index].city === '') {
+      buttonsDisabled = true;
+    }
     if (this.props.index === (getLocations().length) - 1) {
       buttons = (
         <div>
-          <button className="button is-primary is-outlined has-text-centered locationButtons" onClick={() => { addLocationField(); }}>
+          <button className="button is-primary is-outlined has-text-centered locationButtons" disabled={buttonsDisabled} onClick={() => { addLocationField(); }}>
             <div className="icon">
               <i className="fa fa-plus" />
             </div>
