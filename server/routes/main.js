@@ -6,14 +6,13 @@ const playlist = require('./playlist.js');
 
 const router = express.Router();
 
-function createEventArtists([playlist]) {
+function createEventArtists(playlist) {
   if (!playlist || !playlist.eventResponse || !playlist.eventResponse.events) {
     return [];
   }
   return playlist.eventResponse.events.event.filter((event) => {
     return (event && event.performers && event.performers.performer && event.performers.performer.name);
-  })
-    .map(event => event.performers.performer.name);
+  }).map(event => event.performers.performer.name);
 }
 
 
@@ -53,18 +52,19 @@ module.exports = (knex) => {
 
     saveTrip(tripData)
       .then((trip_id) => {
-        return Promise.all(playlistData.map(playlist => savePlaylist(Object.assign(playlist, {
-          trip_id: trip_id[0],
-        }), getQuery(playlist.city))));
+        return Promise.all(playlistData.map((playlist) => {
+          return savePlaylist(Object.assign(playlist, {
+            trip_id: trip_id[0],
+          }), getQuery(playlist.city));
+        }));
       })
       .then((concerts) => {
         const artistLists = concerts.map(createEventArtists);
         const playlists = getArtistTracks(artistLists);
-
         return Promise.all([concerts, playlists])
           .then(([concerts, playlists]) => {
-            const musicData = { playlists, concerts };
-            res.json(musicData);
+            // knex('playlists').update();
+            res.json(concerts.map((concert, index) => Object.assign(concert, { playlist: playlists[index] })));
           });
       });
   });
