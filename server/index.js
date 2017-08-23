@@ -36,7 +36,9 @@ function skipLog(req, res) {
   return false;
 }
 
-app.use(morgan('dev', { skip: skipLog }));
+app.use(morgan('dev', {
+  skip: skipLog,
+}));
 
 // Setup Knex files, include Knex logger and connect to database
 
@@ -48,20 +50,22 @@ app.use(knexLogger(knex));
 
 // Seperate route requires
 
-// const userRoutes = require('./routes/user');
+
 const mainRoute = require('./routes/main');
-
 const userRoute = require('./routes/user');
-
+const spotifyRoute = require('./routes/spotify');
 // This is for body parser
 const bodyParser = require('body-parser');
 
-app.use(bodyParser.json({ extended: true }));
+app.use(bodyParser.json({
+  extended: true,
+}));
 
 // Cookie logic
 
 const shortid = require('shortid');
 const cookieSession = require('cookie-session');
+const passport = require('passport');
 
 app.use(cookieSession({
   name: 'session',
@@ -75,6 +79,10 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 // Pulls static files from build folder if in production mode, otherwise will start webpack dev server and hotmodule
 
@@ -94,21 +102,15 @@ if (ENV === 'production') {
   app.use(hotmodule(compiler));
 }
 
-// If we want to make modules of the routes, then we will 'require' them, and use express.Router(); in those files
+// If we want to make modules of the routes, 'require' them, use express.Router(); in those files
 // eg. https://stackoverflow.com/questions/28305120/differences-between-express-router-and-app-get
 
 // Mount all route files
 
-// app.use(userRoutes(knex));
 app.use(mainRoute(knex));
 app.use(userRoute(knex));
-
-// Below is an example API route:
-
-// app.get('/api', function (req, res) {
-//   res.send('This is how our API will work!');
-// });
+app.use(spotifyRoute());
 
 // Starts the server
-  
+
 app.listen(PORT, '0.0.0.0', 'localhost', () => console.log(`Listening on ${PORT} in ${ENV} mode. Wait for compile...`));

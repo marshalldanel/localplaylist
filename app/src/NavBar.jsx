@@ -66,6 +66,18 @@ class NavBar extends Component {
               Register
             </a>
           </div>
+          <div className="navbar-item">
+            <a
+              role="menuitem"
+              tabIndex="0"
+              type="button"
+              className="is-primary"
+              href="/spotify-userAuth"
+              target="popup"
+            >
+              Login to Spotify
+            </a>
+          </div>
         </div>
         );
     }

@@ -1,7 +1,7 @@
 class Api {
   static get(url) {
     return fetch(url, {
-      credentials: 'include'
+      credentials: 'include',
     }).then(response => response.json());
   }
 
@@ -10,9 +10,9 @@ class Api {
       body: JSON.stringify(data),
       credentials: 'include',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      method: 'POST'
+      method: 'POST',
     });
   }
 }

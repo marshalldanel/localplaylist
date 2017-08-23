@@ -24,7 +24,11 @@ class RegisterForm extends Component {
             <p className="modal-card-title">Register to Tripify</p>
             <button className="delete" onClick={() => { this.props.allGone(); }} />
           </header>
-          <form onSubmit={this.updateUser.bind(this)}>
+          <form onSubmit={() => {
+            this.updateUser.bind(this);
+            this.props.allGone();
+          }}
+          >
             <section className="modal-card-body">
               <div className="field">
                 <label className="label">Firstname</label>

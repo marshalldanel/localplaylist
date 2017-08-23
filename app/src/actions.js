@@ -124,29 +124,35 @@ export function storeFormDataAsync() {
     })
     .then((data) => {
       // Prints out response
-
       const concerts = data.concerts.map((concert) => {
         return concert[0];
       });
-      setState({ concerts });
+      setState({
+        concerts,
+      });
     })
     .then(() => setView('itinerary'));
 }
 
 export function userRegister(firstname, lastname, email, password, confirmPassword) {
   setState({
-    user: { firstname, lastname, email },
+    user: {
+      firstname,
+      lastname,
+      email,
+    },
   });
   Api.post('/new_user', {
-    firstname, lastname, email, password, confirmPassword,
+    firstname,
+    lastname,
+    email,
+    password,
+    confirmPassword,
+    loggedIn: true,
   }).then((response) => {
     console.log(response.json());
     return response.json();
   });
-}
-
-export function getUserName() {
-  const userName = getState().firstname;
 }
 
 export function userLogin(email, password) {
@@ -159,3 +165,8 @@ export function userLogin(email, password) {
     // such that we can get the username to display in nav
   });
 }
+
+export function getUserName() {
+  return getState().firstname;
+}
+
