@@ -11,8 +11,8 @@ import { DateRangePicker, SingleDatePicker, DayPickerRangeController } from 'rea
 
 
 class LocationField extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       city: '',
@@ -22,7 +22,7 @@ class LocationField extends Component {
     };
 
     // Allows autocomplete to do lookup with Google
-    this.onChange = city => this.setState({ city });
+    this.onChange = city => this.setState({ city }, this.updateField);
   }
 
   // Changes global state when any of these change in actions
