@@ -52,6 +52,8 @@
     "react-dates": "^12.4.0",
     "react-dom": "^15.6.1",
     "react-places-autocomplete": "^5.4.2",
+    "react-sound": "^0.8.0",
+    "react-spinners": "0.0.30",
     "request": "^2.81.0",
     "request-promise": "^4.2.1",
     "sass-loader": "^6.0.6",
