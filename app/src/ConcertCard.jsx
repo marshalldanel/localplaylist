@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import placeholder from '../static/placeholder.png';
 
 class ConcertCard extends Component {
   render() {
     const concert = this.props.concert;
-    const thumbnail = concert.image ? concert.image.medium.url : 'http://bulma.io/images/placeholders/128x128.png';
+    const thumbnail = concert.image ? concert.image.medium.url : placeholder;
 
     return (
 

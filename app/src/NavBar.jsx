@@ -19,6 +19,14 @@ class NavBar extends Component {
   }
 
   render() {
+    const view = this.props.view;
+    console.log(this.props.view);
+    let whiteclass = 'has-text-white-bis';
+    if (view === 'itinerary') {
+      whiteclass = '';
+    }
+    const whiteclasslogo = `logo-text navbar-item ${whiteclass}`;
+
     const user = userInfo();
     const userName = user ? user.firstname : null;
     let navBarEnd;
@@ -44,29 +52,7 @@ class NavBar extends Component {
     } else {
       navBarEnd =
         (<div className="navbar-end">
-          <div className="navbar-item">
-            <a
-              role="menuitem"
-              tabIndex="0"
-              type="button"
-              className="is-primary"
-              onClick={() => { this.setState({ loginModal: !this.state.loginModal, registerModal: false }); }}
-            >
-              Login
-            </a>
-          </div>
-          <div className="navbar-item">
-            <a
-              role="menuitem"
-              tabIndex="0"
-              type="button"
-              className="is-primary"
-              onClick={() => { this.setState({ registerModal: !this.state.registerModal, loginModal: false }); }}
-            >
-              Register
-            </a>
-          </div>
-          <div className="navbar-item">
+          <div className="navbar-item ">
             <a
               role="menuitem"
               tabIndex="0"
@@ -75,7 +61,7 @@ class NavBar extends Component {
               href="/spotify-userAuth"
               target="popup"
             >
-              Connect Spotify
+              <span className={whiteclass}>Connect Spotify</span>
             </a>
           </div>
         </div>
@@ -87,8 +73,8 @@ class NavBar extends Component {
       <header>
         <div className="container">
           <nav className="navbar">
-            <div className="navbar-brand">
-              <a href="/" className="logo-text navbar-item">Tripify</a>
+            <div className="navbar-brand ">
+              <a href="/" className={whiteclasslogo}>Tripify</a>
             </div>
             {navBarEnd}
             {(this.state.loginModal ? (
