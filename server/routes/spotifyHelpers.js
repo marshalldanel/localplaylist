@@ -9,17 +9,25 @@ const redirect_uri = 'http://0.0.0.0:3000/callback';
 const spotifyApi = new SpotifyWebApi({
   clientId: client_id,
   clientSecret: client_secret,
-  accessToken: '',
 });
 
-spotifyApi.clientCredentialsGrant()
-  .then((data) => {
-    spotifyApi.setAccessToken(data.body.access_token);
-    console.log('our spotify info is: ', spotifyApi);
-  }, (err) => {
-    console.log('something went wrong :( >>> ', err);
-    process.exit(-1); // if we don't have a working spotify credentials grant, all is lost.
-  });
+function anonTrip() {
+  spotifyApi.clientCredentialsGrant()
+    .then((data) => {
+      spotifyApi.setAccessToken(data.body.access_token);
+      console.log('our spotify info is: ', spotifyApi);
+    }, (err) => {
+      console.log('something went wrong :( >>> ', err);
+      process.exit(-1); // if we don't have a working spotify credentials grant, all is lost.
+    });
+}
+
+// function userTrip(accessToken, refreshToken) {
+//   spotifyApi.setCredentials({
+//     accessToken,
+//     refreshToken,
+//   });
+// }
 
 function topThreeTracks(trackList) {
   const artistTracks = trackList.body.tracks;
@@ -58,6 +66,18 @@ function getArtistTracks(ALL) {
   }));
 }
 
+function setRefeshToken(data) {
+  spotifyApi.setRefreshToken(data);
+}
+
+function setAccessToken(data) {
+  spotifyApi.setAccessToken(data);
+}
+
 module.exports = {
   getArtistTracks,
+  anonTrip,
+  userTrip,
+  // setAccessToken,
+  // setRefeshToken,
 };

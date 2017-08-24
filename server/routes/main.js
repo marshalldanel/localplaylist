@@ -1,4 +1,4 @@
-const { getArtistTracks } = require('./spotifyHelpers');
+const { getArtistTracks, anonTrip, userTrip } = require('./spotifyHelpers');
 
 const express = require('express');
 const trip = require('./trip.js');
@@ -18,6 +18,10 @@ function createEventArtists(playlist) {
 
 module.exports = (knex) => {
   router.post('/trip', (req, res) => {
+    console.log('REQ.USER', req.user);
+
+    anonTrip(); 
+
     const {
       saveTrip,
     } = trip(knex);

@@ -64,13 +64,14 @@ app.use(bodyParser.json({
 // Cookie logic
 
 const shortid = require('shortid');
-const cookieSession = require('cookie-session');
+const expressSession = require('express-session');
 const passport = require('passport');
 
-app.use(cookieSession({
-  name: 'session',
-  keys: ['hksdn'],
-  maxAge: 24 * 60 * 60 * 1000,
+app.use(expressSession({
+  secret: 'this is a random string',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false, maxAge: 60000 },
 }));
 
 app.use((req, res, next) => {
@@ -109,7 +110,7 @@ if (ENV === 'production') {
 
 app.use(mainRoute(knex));
 app.use(userRoute(knex));
-app.use(spotifyRoute());
+app.use(spotifyRoute(knex));
 
 // Starts the server
 
