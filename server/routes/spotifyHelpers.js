@@ -75,38 +75,32 @@ function getArtistTracks(ALL) {
   }));
 }
 
-//playlist saving
+// playlist saving
 
-//data should be username
 
-function userTrip(accessToken, refreshToken) {
-  spotifyUserApi.setCredentials({
-    accessToken,
-    refreshToken,
-  });
-}
+function makePrivatePlaylist(id, accessToken, refreshToken, playlist) {
+  spotifyUserApi.setAccessToken(accessToken);
+  spotifyUserApi.setRefreshToken(refreshToken);
 
-function makePrivatePlaylist(id, accessToken, refreshToken) {
-  userTrip(accessToken, refreshToken);
-  spotifyUserApi.createPlaylist(id, 'Tripify Playlist', {
-      public: false
+  spotifyUserApi.createPlaylist(id, 'RoadieSounds Playlist', { public: false })
+    .then((data) => {
+      return data;
+    }, (err) => {
+      console.log("In error block", spotifyUserApi);
+      console.log('Something went wrong!', err);
     })
     .then((data) => {
-      console.log('data', data);
-      console.log('Created playlist!');
-    }, (err) => {
-      // console.log(spotifyUserApi);
-      console.log('Something went wrong!', err);
+      spotifyUserApi.addTracksToPlaylist(data.body.owner.id, data.body.id, playlist) // cityPlaylist[0].id
+        .then((data) => {
+          // console.log(data);
+          console.log('Added tracks to playlist!');
+        }, (err) => {
+          console.log('Something went wrong!', err);
+        });
     });
 }
-
 // //add all tracks here
-// spotifyApi.addTracksToPlaylist('USERNAME', 'PLAYLIST ID', ['spotify:track:TRACKID', 'spotify:track:ID'])
-//   .then((data) => {
-//     console.log('Added tracks to playlist!');
-//   }, (err) => {
-//     console.log('Something went wrong!', err);
-//   });
+
 
 module.exports = {
   getArtistTracks,

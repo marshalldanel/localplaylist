@@ -12,6 +12,11 @@ const client_id = process.env.SPOTIFY_CLIENT_ID;
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
 const redirect_uri = 'http://0.0.0.0:3000/callback';
 
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/spotify-userAuth');
+  next();
+}
 // Spotify Web Node module
 module.exports = (knex) => {
   passport.serializeUser((user, done) => {
@@ -34,33 +39,22 @@ module.exports = (knex) => {
     callbackURL: redirect_uri,
   },
   (accessToken, refreshToken, profile, done) => {
-    knex('users').where('spotify_id', profile.id)
+    return knex('users').where('spotify_id', profile.id)
+      .insert({
+        first_name: profile.displayName,
+        spotify_id: profile.id,
+        access_token: accessToken,
+        refresh_token: refreshToken,
+      }).returning('*')
       .then((users) => {
-        if (!users.length) {
-          return knex('users').insert({
-            first_name: profile.displayName,
-            spotify_id: profile.id,
-            // access_token: accessToken,
-            // refresh_token: refreshToken,
-          }).returning('*');
-        }
-        return users;
-      })
-      .then((users) => {
-        console.log("allusers",users);
-        users[0].access_token = accessToken;
-        users[0].refresh_token = refreshToken;
-        return users[0];
-      })
-      .then((user) => {
-        console.log(user);
-        return done(null, user);
+        return done(null, users[0]);
       });
   }));
 
+
   router.get('/spotify-userAuth',
     passport.authenticate('spotify', {
-      scope: ['user-read-private', 'playlist-modify-private', 'playlist-modify-private'],
+      scope: ['user-read-private', 'playlist-modify-private'],
       showDialog: true,
       display: 'popup',
     }));
@@ -74,14 +68,19 @@ module.exports = (knex) => {
       res.status(204).send();
     });
 
+  router.use(ensureAuthenticated);
+
   router.get('/current-user', (req, res) => {
     res.json(req.user);
   });
 
   router.post('/save-playlist', (req, res) => {
-    console.log("This is the id", req.user);
-    makePrivatePlaylist(req.user.spotify_id, req.user.access_token, req.user.refresh_token);
-
+    const userPlaylist = req.body.cityPlaylist;
+    const songIds = userPlaylist.map((song) => {
+      return `spotify:track:${song.id}`;
+    });
+    console.log("This is an array of song ids", songIds);
+    makePrivatePlaylist(req.user.spotify_id, req.user.access_token, req.user.refresh_token, songIds);
     res.status(200).send();
   });
 

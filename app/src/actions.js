@@ -182,8 +182,6 @@ export function spotifyUser() {
 }
 
 export function savePlaylist(cityPlaylist) {
-  console.log("got here");
-  //function expects an array of arrays of 3 songs each - each is an object.
   Api.post('/save-playlist', {
     cityPlaylist,
   })

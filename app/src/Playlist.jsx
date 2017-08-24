@@ -9,15 +9,9 @@ class Playlist extends Component {
     const cityIndex = this.props.index;
     const concerts = getConcerts();
     const cityPlaylist = concerts[cityIndex].playlist;
+    const userPlaylist = cityPlaylist.map((artistSongs) => { return artistSongs[0]; });
 
-    const playlist = cityPlaylist.map((artist, index) => {
-      const firstSongResult = artist[0];
-      const songTitle = firstSongResult.name;
-      const songArtist = firstSongResult.artists[0].name;
-      const songPreviewUrl = firstSongResult.preview_url;
-
-      return <PlaylistSong title={songTitle} artist={songArtist} previewurl={songPreviewUrl} index={index} key={index} />;
-    });
+    // const playlist = 
 
     return (
       <div className="container is-paddingless">
@@ -33,17 +27,23 @@ class Playlist extends Component {
               <small>Title</small>
             </div>
             <div className="column is-3 has-text-right">
-              <button
+              <a
                 onClick={() => {
-                  console.log('something happened!');
-                  savePlaylist(cityPlaylist);
+                  savePlaylist(userPlaylist);
                 }}
               >Save Playlist
-              </button>
+              </a>
             </div>
           </div>
         </div>
-        {playlist}
+        {cityPlaylist.map((artist, index) => {
+      const firstSongResult = artist[0];
+      const songTitle = firstSongResult.name;
+      const songArtist = firstSongResult.artists[0].name;
+      const songPreviewUrl = firstSongResult.preview_url;
+
+      return <PlaylistSong title={songTitle} artist={songArtist} previewurl={songPreviewUrl} index={index} key={index} />;
+    })}
       </div>
     );
   }
