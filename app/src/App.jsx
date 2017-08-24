@@ -24,7 +24,7 @@ class App extends Component {
                 width={25}
               />
               <div className="has-text-centered has-text-white-bis animated infinite fadeIn">
-              Making some music...
+                Making some music...
               </div>
             </div>
           </div>
@@ -58,7 +58,48 @@ class App extends Component {
           genres={this.props.genres}
           concertData={this.props.concerts}
         />
-        <footer className="footer"> FOOTER </footer>
+        <footer className="footer">
+          <div className="container is-small">
+            <div className="columns">
+              <div className="column">
+                <div className="content has-text-centered">
+                  <p>
+                    Marshall Danel
+                    <br />
+                    <span className="icon is-small is-left">
+                      <i className="fa fa-user"></i>
+                    </span>
+                    marshalldanel@gmail.com
+                  </p>
+                </div>
+              </div>
+              <div className="column">
+                <div className="content has-text-centered">
+                  <p>
+                    Sanjana Desai
+                    <br />
+                    <span className="icon is-small is-left">
+                      <i className="fa fa-user"></i>
+                    </span>
+                    sanjana_desai@live.ca
+                  </p>
+                </div>
+              </div>
+              <div className="column">
+                <div className="content has-text-centered">
+                  <p>
+                    Denny Hollick
+                    <br />
+                    <span className="icon is-small is-left">
+                      <i className="fa fa-user"></i>
+                    </span>
+                    dennyhollick@gmail.com
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
       </div>
     );
   }

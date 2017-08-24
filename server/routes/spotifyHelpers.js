@@ -9,17 +9,34 @@ const redirect_uri = 'http://0.0.0.0:3000/callback';
 const spotifyApi = new SpotifyWebApi({
   clientId: client_id,
   clientSecret: client_secret,
-  accessToken: '',
 });
 
-spotifyApi.clientCredentialsGrant()
-  .then((data) => {
-    spotifyApi.setAccessToken(data.body.access_token);
-    console.log('our spotify info is: ', spotifyApi);
-  }, (err) => {
-    console.log('something went wrong :( >>> ', err);
-    process.exit(-1); // if we don't have a working spotify credentials grant, all is lost.
-  });
+const spotifyUserApi = new SpotifyWebApi({
+  clientId: client_id,
+  clientSecret: client_secret,
+});
+
+function refreshAccessToken() {
+  spotifyUserApi.refreshAccessToken()
+    .then((data) => {
+      console.log(data.body.access_token);
+      return data;
+    }, (err) => {
+      console.log('ERROR!', err);
+    });
+}
+
+
+function anonTrip() {
+  spotifyApi.clientCredentialsGrant()
+    .then((data) => {
+      spotifyApi.setAccessToken(data.body.access_token);
+      console.log('our spotify info is: ', spotifyApi);
+    }, (err) => {
+      console.log('something went wrong :( >>> ', err);
+      process.exit(-1); // if we don't have a working spotify credentials grant, all is lost.
+    });
+}
 
 function topThreeTracks(trackList) {
   const artistTracks = trackList.body.tracks;
@@ -58,6 +75,36 @@ function getArtistTracks(ALL) {
   }));
 }
 
+// playlist saving
+
+
+function makePrivatePlaylist(id, accessToken, refreshToken, playlist) {
+  spotifyUserApi.setAccessToken(accessToken);
+  spotifyUserApi.setRefreshToken(refreshToken);
+
+  spotifyUserApi.createPlaylist(id, 'RoadieSounds Playlist', { public: false })
+    .then((data) => {
+      return data;
+    }, (err) => {
+      console.log("In error block", spotifyUserApi);
+      console.log('Something went wrong!', err);
+    })
+    .then((data) => {
+      spotifyUserApi.addTracksToPlaylist(data.body.owner.id, data.body.id, playlist) // cityPlaylist[0].id
+        .then((data) => {
+          // console.log(data);
+          console.log('Added tracks to playlist!');
+        }, (err) => {
+          console.log('Something went wrong!', err);
+        });
+    });
+}
+// //add all tracks here
+
+
 module.exports = {
   getArtistTracks,
+  anonTrip,
+  makePrivatePlaylist,
+  refreshAccessToken,
 };
