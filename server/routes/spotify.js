@@ -12,8 +12,6 @@ const client_id = process.env.SPOTIFY_CLIENT_ID;
 const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
 const redirect_uri = 'http://0.0.0.0:3000/callback';
 
-// user has refresh token until deserialized is called........
-
 // Spotify Web Node module
 module.exports = (knex) => {
   passport.serializeUser((user, done) => {
