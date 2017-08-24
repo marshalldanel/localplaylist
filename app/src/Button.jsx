@@ -31,12 +31,14 @@ class Button extends Component {
     }
 
     return (
-      <div className="columns">
-        <div className="column" />
-        <div className="column is-2">
-          {isButton}
+      <div className="section">
+        <div className="columns">
+          <div className="column" />
+          <div className="column is-2">
+            {isButton}
+          </div>
+          <div className="column" />
         </div>
-        <div className="column" />
       </div>
     );
   }

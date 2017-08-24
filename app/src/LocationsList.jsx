@@ -18,7 +18,7 @@ class LocationsList extends Component {
     });
     return (
       <div className="locationsContainer container">
-        <h2 className="subtitle has-text-centered is-size-2">Where are you travelling to?</h2>
+        <h2 className="subtitle has-text-centered is-size-2 has-text-white-bis">Where are you travelling to?</h2>
         {/* Render location input fields */}
         {locations}
       </div>

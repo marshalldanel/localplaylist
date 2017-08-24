@@ -3,12 +3,13 @@ import { ScaleLoader } from 'react-spinners';
 import NavBar from './NavBar.jsx';
 import { setView } from './actions.js';
 import Home from './Home.jsx';
+import videoMpg from '../static/Major-Tom.mp4';
 
 // THIS WILL NEVER CONTAIN THIS.STATE ANYWHERE - 
 class App extends Component {
   render() {
     let loading = '';
-    console.log(this.props.loading);
+    let video = '';
 
     if (this.props.loading === true) {
       loading = (
@@ -32,10 +33,25 @@ class App extends Component {
       );
     }
 
+    if (this.props.view !== 'itinerary' && this.props.loading === false) {
+      video = (
+        <div>
+          <div className="fullscreen-overlay" />
+          <div className="fullscreen-bg">
+            {/* <iframe id="video" title="video" className="fullscreen-bg__video" src="https://www.youtube.com/embed/34Na4j8AVgA?rel=0&amp;amp;controls=0&amp;amp;showinfo=0&amp;amp;autoplay=1&amp;amp;loop=1&amp;amp;modestbranding=1&amp;amp;iv_load_policy=3&amp;amp;enablejsapi=1&amp;amp;vq=medium&amp;amp;playlist=34Na4j8AVgA" /> */}
+            <video loop muted autoPlay className="fullscreen-bg__video">
+              <source src={videoMpg} type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div className="main-container">
         {loading}
-        <NavBar />
+        {video}
+        <NavBar view={this.props.view} />
         <Home
           view={this.props.view}
           locations={this.props.locations}

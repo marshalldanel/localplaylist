@@ -14,7 +14,7 @@ class Playlist extends Component {
     // const playlist = 
 
     return (
-      <div className="container is-paddingless">
+      <div className="container is-paddingless animated fadeIn">
         <div className="box is-marginless is-radiusless">
           <div className="columns">
             <div className="column is-1 has-text-centered">
@@ -51,17 +51,3 @@ class Playlist extends Component {
 
 export default Playlist;
 
-const fakeSongData = [
-  {
-    title: 'The Cool Song',
-    artist: 'Presidents of the United States of America',
-  },
-  {
-    title: 'Something Really Good',
-    artist: 'Fake Artist',
-  },
-  {
-    title: 'Something Really Bad',
-    artist: 'The Best Artist',
-  },
-];

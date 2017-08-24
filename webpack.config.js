@@ -27,6 +27,9 @@ const config = {
         include: [
           path.resolve(__dirname, 'app'),
         ],
+        exclude: [
+          path.resolve(__dirname, 'node_modules'),
+        ],
         use: {
           loader: 'babel-loader',
           options: {
@@ -38,6 +41,9 @@ const config = {
       // https://webpack.js.org/loaders/sass-loader/
       {
         test: /\.scss$/,
+        exclude: [
+          path.resolve(__dirname, 'node_modules'),
+        ],
         use: [{
           loader: 'style-loader',
         }, {
@@ -47,10 +53,13 @@ const config = {
         }],
       },
       {
-        test: /.(png|jpg|gif)$/,
-        use: [{
-          loader: 'file-loader',
-          options: {} }],
+        test: /\.(jpe?g|gif|png|svg|woff|ttf|wav|mp3|mp4|ogv|webm)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[hash].[ext]',
+          publicPath: '/',
+          outputPath: 'assets/',
+        },
       },
     ],
   },

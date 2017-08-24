@@ -17,7 +17,7 @@ class CityCard extends Component {
 
     return (
       <div>
-        <div className="container">
+        <div className="container animated fadeIn">
           <box
             className={boxClass}
             onClick={() => { this.setState({ unrolled: !this.state.unrolled }); }}
