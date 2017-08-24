@@ -15,12 +15,12 @@ class CityCard extends Component {
     const trip = this.props.trip;
     const index = this.props.index;
     const boxClass = 'box is-primary is-outlined';
-    const startDate = moment(trip.start_date).format('LL');
-    const endDate = moment(trip.end_date).format('LL');
+    const startDate = moment(trip.start_date).format('ll');
+    const endDate = moment(trip.end_date).format('ll');
 
     return (
       <div>
-        <div className="container animated fadeIn">
+        <div className="add-padding-top-bottom animated bounceInRight">
           <box
             className={boxClass}
             onClick={() => { this.setState({ unrolled: !this.state.unrolled }); }}
@@ -28,7 +28,7 @@ class CityCard extends Component {
             <div className="columns">
               <div className="column is-1">
                 <span className="icon has-text-primary">
-                  <i className="fa fa-angle-down animated infinite pulse" />
+                  <i className="fa fa-angle-down" />
                 </span>
               </div>
               <div className="column is-8">
