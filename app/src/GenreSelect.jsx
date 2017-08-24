@@ -29,11 +29,11 @@ class GenreSelect extends Component {
       },
       {
         genre: 'world',
-        icon: 'fa fa-motorcycle',
+        icon: 'fa fa-globe',
       },
       {
         genre: 'eletronic',
-        icon: 'fa fa-star-o',
+        icon: 'fa fa-bolt',
       },
       {
         genre: 'classical',
@@ -41,19 +41,19 @@ class GenreSelect extends Component {
       },
       {
         genre: 'country',
-        icon: 'fa fa-trash',
+        icon: 'fa fa-star',
       },
       {
         genre: 'folk',
-        icon: 'fa fa-trash',
+        icon: 'fa fa-signing',
       },
       {
         genre: 'latin',
-        icon: 'fa fa-trash',
+        icon: 'fa fa-thermometer-full',
       },
       {
         genre: 'r&b',
-        icon: 'fa fa-trash',
+        icon: 'fa fa-heart',
       },
       {
         genre: 'metal',

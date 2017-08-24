@@ -74,7 +74,7 @@ class NavBar extends Component {
         <div className="container">
           <nav className="navbar">
             <div className="navbar-brand ">
-              <a href="/" className={whiteclasslogo}>Tripify</a>
+              <a href="/" className={whiteclasslogo}>RoadieSounds</a>
             </div>
             {navBarEnd}
             {(this.state.loginModal ? (

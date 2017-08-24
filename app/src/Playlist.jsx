@@ -27,23 +27,28 @@ class Playlist extends Component {
               <small>Title</small>
             </div>
             <div className="column is-3 has-text-right">
-              <a
+              <button
+                className="button is-primary"
                 onClick={() => {
                   savePlaylist(userPlaylist);
                 }}
-              >Save Playlist
-              </a>
+              >
+                <span className="icon is-small">
+                  <i className="fa fa-spotify" aria-hidden="true" />
+                </span>
+              <span>Save to Spotify</span>
+              </button>
             </div>
           </div>
         </div>
         {cityPlaylist.map((artist, index) => {
-      const firstSongResult = artist[0];
-      const songTitle = firstSongResult.name;
-      const songArtist = firstSongResult.artists[0].name;
-      const songPreviewUrl = firstSongResult.preview_url;
+          const firstSongResult = artist[0];
+          const songTitle = firstSongResult.name;
+          const songArtist = firstSongResult.artists[0].name;
+          const songPreviewUrl = firstSongResult.preview_url;
 
-      return <PlaylistSong title={songTitle} artist={songArtist} previewurl={songPreviewUrl} index={index} key={index} />;
-    })}
+          return <PlaylistSong title={songTitle} artist={songArtist} previewurl={songPreviewUrl} index={index} key={index} />;
+        })}
       </div>
     );
   }
