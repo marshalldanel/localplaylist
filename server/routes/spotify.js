@@ -4,9 +4,7 @@ const expressSession = require('express-session');
 const router = express.Router();
 const passport = require('passport');
 const SpotifyStrategy = require('passport-spotify').Strategy;
-const {
-  userTrip,
-} = require('./spotifyHelpers');
+// const {} = require('./spotifyHelpers');
 
 require('dotenv').config();
 

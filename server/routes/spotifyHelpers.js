@@ -77,7 +77,6 @@ function setAccessToken(data) {
 module.exports = {
   getArtistTracks,
   anonTrip,
-  userTrip,
   // setAccessToken,
   // setRefeshToken,
 };
