@@ -19,8 +19,14 @@ class CitiesResults extends Component {
             <h2 className="title has-text-centered"> Your Trip </h2>
           </div>
         </div>
-        <div className="section is-paddingless">
+        <div className="container min-height">
           {trips}
+          <div className="section is-small has-text-centered">
+            <div className="icon">
+              <i className="fa fa-thumbs-o-up has-text-primary is-size-1" aria-hidden="true" />
+            </div>
+          </div>
+
         </div>
       </section>
     );

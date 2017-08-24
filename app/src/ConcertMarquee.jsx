@@ -3,7 +3,6 @@ import ConcertCard from './ConcertCard.jsx';
 import { updateConcertIndex, getConcerts, getConcertViewIndex } from './actions.js';
 
 class ConcertMarquee extends Component {
-
   // TODO: Concert index state needs to be held within the component otherwise it will affect other ones.
 
   render() {
@@ -37,38 +36,40 @@ class ConcertMarquee extends Component {
     const currentPage = (Math.floor(start / maxInView) + 1);
 
     return (
-      <div className="section is-marginless animated fadeIn">
-        <div className="columns">
-          <div className="column is-1" />
-          <div className="column is-10">
-            <div className="columns concert-scroller">
-              {concerts}
+      <div className="section is-marginless animated fadeIn no-padding-left-right">
+        <div className="container animated fadeIn">
+          <div className="columns">
+            {/* <div className="column is-1" /> */}
+            <div className="column">
+              <div className="columns concert-scroller">
+                {concerts}
+              </div>
             </div>
+            {/* <div className="column is-1" /> */}
           </div>
-          <div className="column is-1" />
-        </div>
-        <div className="has-text-centered">
-          <span className="icon icon-colour-green">
-            <i
-              className="fa fa-chevron-left"
-              aria-hidden="true"
-              role="button"
-              onClick={() => {
-                updateConcertIndex(-1, events.length);
-              }}
-            />
-          </span>
-          <span>{currentPage}/{numberOfPages}</span>
-          <span className="icon icon-colour-green">
-            <i
-              className="fa fa-chevron-right"
-              aria-hidden="true"
-              role="button"
-              onClick={() => {
-                updateConcertIndex(1, events.length);
-              }}
-            />
-          </span>
+          <div className="has-text-centered">
+            <span className="icon icon-colour-green">
+              <i
+                className="fa fa-chevron-left"
+                aria-hidden="true"
+                role="button"
+                onClick={() => {
+                  updateConcertIndex(-1, events.length);
+                }}
+              />
+            </span>
+            <span>{currentPage}/{numberOfPages}</span>
+            <span className="icon icon-colour-green">
+              <i
+                className="fa fa-chevron-right"
+                aria-hidden="true"
+                role="button"
+                onClick={() => {
+                  updateConcertIndex(1, events.length);
+                }}
+              />
+            </span>
+          </div>
         </div>
       </div>
     );

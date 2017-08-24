@@ -25,6 +25,11 @@
     vertical-align: middle;
 }
 
+.no-padding-left-right {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .navbar {
   background-color: transparent;
 }
@@ -69,6 +74,10 @@
 .concert-card {
   height: 175px;
   overflow: scroll;
+}
+
+.min-height{
+  min-height: 800px;
 }
 
 .concert-scroller {

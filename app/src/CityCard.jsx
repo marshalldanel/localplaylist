@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ConcertMarquee from './ConcertMarquee.jsx';
 import Playlist from './Playlist.jsx';
+import moment from 'moment'
 
 class CityCard extends Component {
   constructor(props) {
@@ -13,7 +14,9 @@ class CityCard extends Component {
   render() {
     const trip = this.props.trip;
     const index = this.props.index;
-    const boxClass = 'box is-primary is-outlined is-large';
+    const boxClass = 'box is-primary is-outlined';
+    const startDate = moment(trip.start_date).format('LL');
+    const endDate = moment(trip.end_date).format('LL');
 
     return (
       <div>
@@ -24,15 +27,15 @@ class CityCard extends Component {
           >
             <div className="columns">
               <div className="column is-1">
-                <span className="icon">
-                  <i className="fa fa-angle-down" />
+                <span className="icon has-text-primary">
+                  <i className="fa fa-angle-down animated infinite pulse" />
                 </span>
               </div>
               <div className="column is-8">
                 <span>{trip.city}</span>
               </div>
               <div className="column has-text-right">
-                <span>{trip.start_date} - {trip.end_date}</span>
+                <span>{startDate} - {endDate}</span>
               </div>
             </div>
           </box>
