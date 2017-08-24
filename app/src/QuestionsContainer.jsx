@@ -20,9 +20,9 @@ class QuestionsContainer extends Component {
     }
 
     return (
-      <section className="section">
+      <div>
         {currentView}
-      </section>
+      </div>
     );
   }
 }
