@@ -15,12 +15,18 @@ class CitiesResults extends Component {
     return (
       <section className="cities-results animated fadeIn">
         <div className="hero is-small is-primary is-bold">
-          <div className="hero-body">
+          <div className="hero-body animated bounceInRight">
             <h2 className="title has-text-centered"> Your Trip </h2>
           </div>
         </div>
-        <div className="section is-paddingless">
+        <div className="container min-height">
           {trips}
+          <div className="section is-small has-text-centered animated bounceInRight">
+            <div className="icon">
+              <i className="fa fa-thumbs-o-up has-text-primary is-size-1" aria-hidden="true" />
+            </div>
+          </div>
+
         </div>
       </section>
     );

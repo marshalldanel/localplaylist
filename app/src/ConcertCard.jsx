@@ -5,6 +5,12 @@ class ConcertCard extends Component {
   render() {
     const concert = this.props.concert;
     const thumbnail = concert.image ? concert.image.medium.url : placeholder;
+    let title = concert.title;
+
+    if (title.length > 39) {
+      const subtitle = title.substring(0, 39);
+      title = `${subtitle}...`;
+    }
 
     return (
 
@@ -20,7 +26,7 @@ class ConcertCard extends Component {
                 </figure>
               </div>
               <div className="media-content">
-                <p className="title is-5">{concert.title}</p>
+                <p className="title is-5">{title}</p>
                 <p className="subtitle is-6">
                   <a href={concert.venue_url}>{concert.venue_name.replace(', The', '')}</a>
                   <br />
