@@ -11,6 +11,22 @@ const spotifyApi = new SpotifyWebApi({
   clientSecret: client_secret,
 });
 
+const spotifyUserApi = new SpotifyWebApi({
+  clientId: client_id,
+  clientSecret: client_secret,
+});
+
+function refreshAccessToken() {
+  spotifyUserApi.refreshAccessToken()
+    .then((data) => {
+      console.log(data.body.access_token);
+      return data;
+    }, (err) => {
+      console.log('ERROR!', err);
+    });
+}
+
+
 function anonTrip() {
   spotifyApi.clientCredentialsGrant()
     .then((data) => {
@@ -21,13 +37,6 @@ function anonTrip() {
       process.exit(-1); // if we don't have a working spotify credentials grant, all is lost.
     });
 }
-
-// function userTrip(accessToken, refreshToken) {
-//   spotifyApi.setCredentials({
-//     accessToken,
-//     refreshToken,
-//   });
-// }
 
 function topThreeTracks(trackList) {
   const artistTracks = trackList.body.tracks;
@@ -66,17 +75,42 @@ function getArtistTracks(ALL) {
   }));
 }
 
-function setRefeshToken(data) {
-  spotifyApi.setRefreshToken(data);
+//playlist saving
+
+//data should be username
+
+function userTrip(accessToken, refreshToken) {
+  spotifyUserApi.setCredentials({
+    accessToken,
+    refreshToken,
+  });
 }
 
-function setAccessToken(data) {
-  spotifyApi.setAccessToken(data);
+function makePrivatePlaylist(id, accessToken, refreshToken) {
+  userTrip(accessToken, refreshToken);
+  spotifyUserApi.createPlaylist(id, 'Tripify Playlist', {
+      public: false
+    })
+    .then((data) => {
+      console.log('data', data);
+      console.log('Created playlist!');
+    }, (err) => {
+      // console.log(spotifyUserApi);
+      console.log('Something went wrong!', err);
+    });
 }
+
+// //add all tracks here
+// spotifyApi.addTracksToPlaylist('USERNAME', 'PLAYLIST ID', ['spotify:track:TRACKID', 'spotify:track:ID'])
+//   .then((data) => {
+//     console.log('Added tracks to playlist!');
+//   }, (err) => {
+//     console.log('Something went wrong!', err);
+//   });
 
 module.exports = {
   getArtistTracks,
   anonTrip,
-  // setAccessToken,
-  // setRefeshToken,
+  makePrivatePlaylist,
+  refreshAccessToken,
 };

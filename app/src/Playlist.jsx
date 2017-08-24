@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getConcerts } from './actions.js';
+import { getConcerts, savePlaylist } from './actions.js';
 import PlaylistSong from './PlaylistSong.jsx';
 
 
@@ -32,7 +32,15 @@ class Playlist extends Component {
             <div className="column is-4">
               <small>Title</small>
             </div>
-            <div className="column is-3 has-text-right" />
+            <div className="column is-3 has-text-right">
+              <button
+                onClick={() => {
+                  console.log('something happened!');
+                  savePlaylist(cityPlaylist);
+                }}
+              >Save Playlist
+              </button>
+            </div>
           </div>
         </div>
         {playlist}

@@ -160,7 +160,8 @@ export function userRegister(firstname, lastname, email, password, confirmPasswo
 
 export function userLogin(email, password) {
   Api.post('/login', {
-    email, password,
+    email,
+    password,
   }).then((response) => {
     console.log(response);
     return response.json();
@@ -173,3 +174,21 @@ export function getUserName() {
   return getState().firstname;
 }
 
+export function spotifyUser() {
+  Api.get('/current-user')
+    .then((response) => {
+      response.json();
+    });
+}
+
+export function savePlaylist(cityPlaylist) {
+  console.log("got here");
+  //function expects an array of arrays of 3 songs each - each is an object.
+  Api.post('/save-playlist', {
+    cityPlaylist,
+  })
+    .then((response) => {
+      console.log(response);
+      return response.json();
+    });
+}
