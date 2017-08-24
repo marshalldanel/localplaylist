@@ -102,7 +102,7 @@ class GenreSelect extends Component {
 
     return (
       <div className="container animated fadeIn">
-        <h2 className="subtitle has-text-centered is-size-2">Select your favourite genres</h2>
+        <h2 className="subtitle has-text-centered is-size-2 has-text-white-bis">Select your favourite genres</h2>
         <div className="columns">
           <div className="column is-2" />
           <div className="column is-8">
