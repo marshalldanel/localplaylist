@@ -101,7 +101,7 @@ class GenreSelect extends Component {
     // Render above buttons
 
     return (
-      <div className="container">
+      <div className="container animated fadeIn">
         <h2 className="subtitle has-text-centered is-size-2">Select your favourite genres</h2>
         <div className="columns">
           <div className="column is-2" />

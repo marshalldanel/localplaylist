@@ -33,7 +33,7 @@ class App extends Component {
     }
 
     return (
-      <div className="main-container">
+      <div className="main-container animated fadeIn">
         {loading}
         <NavBar />
         <Home

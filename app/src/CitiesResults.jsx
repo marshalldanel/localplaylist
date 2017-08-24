@@ -13,7 +13,7 @@ class CitiesResults extends Component {
     });
 
     return (
-      <section className="cities-results">
+      <section className="cities-results animated fadeIn">
         <div className="hero is-small is-primary is-bold">
           <div className="hero-body">
             <h2 className="title has-text-centered"> Your Trip </h2>

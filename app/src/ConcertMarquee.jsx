@@ -37,7 +37,7 @@ class ConcertMarquee extends Component {
     const currentPage = (Math.floor(start / maxInView) + 1);
 
     return (
-      <div className="section is-marginless">
+      <div className="section is-marginless animated fadeIn">
         <div className="columns">
           <div className="column is-1" />
           <div className="column is-10">
