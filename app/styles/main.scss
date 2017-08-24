@@ -25,6 +25,10 @@
     vertical-align: middle;
 }
 
+.navbar {
+  background-color: transparent;
+}
+
 .modal-background {
   background-color: $primary;
   opacity: 0.8 ;
@@ -81,6 +85,7 @@
   &:hover {
         color: red;
     } 
+}
 
 .index-is-2 {
   z-index: 2;
@@ -91,4 +96,48 @@
   border-radius: 0;
 }
 
+.fullscreen-overlay {
+    opacity: .3;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -50;
+}
+
+.fullscreen-bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -100;
+}
+
+.fullscreen-bg__video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: auto;
+    height: auto;
+    min-width: 100%;
+    min-height: 100%;
+    -webkit-transform: translate(-50%, -50%);
+       -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+	    transform: translate(-50%, -50%);
+}
+
+@media (max-width: 767px) {
+    .fullscreen-bg {
+        background: url('../static/Major-Tom.jpg') center center / cover no-repeat;
+    }
+
+    .fullscreen-bg__video {
+        display: none;
+    }
 }
