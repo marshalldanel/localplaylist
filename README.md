@@ -1,10 +1,10 @@
-## RoadyMusic
+## RoadieSounds
 
-RoadyMusic is a really simply way to discover new live music, especially while you're travelling. This was a final project for a Lighthouse Labs Cohort in 2017. 
+RoadieSounds is a really simply way to discover new live music, especially while you're travelling. This was a final project for a Lighthouse Labs Cohort in 2017. 
 
-Going through concert listing for bands you are unfamiliar with can be tedious and time consuming to find a concert you might be interested in going to. Instead of simply reading through concert listings, RoadyMusic lets you listen to them. 
+Going through concert listing for bands you are unfamiliar with can be tedious and time consuming to find a concert you might be interested in going to. Instead of simply reading through concert listings, RoadieSounds lets you listen to them. 
 
-Simply enter the cities you are interested in attending concerts in, and the genres you like. RoadyMusic will not only return the concert listings for those time periods, but it will generate a playlist for you that you can save to Spotify. 
+Simply enter the cities you are interested in attending concerts in, and the genres you like. RoadieSounds will not only return the concert listings for those time periods, but it will generate a playlist for you that you can save to Spotify. 
 
 ![demo1](https://github.com/dennyhollick/localplaylist/blob/master/docs/RoadyDemo1.gif)
 
